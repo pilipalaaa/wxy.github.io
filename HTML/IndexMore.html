@@ -1,0 +1,771 @@
+<!doctype html>
+<html>
+<head>
+    <title>总用电曲线</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <link href="lib/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/jquery/1.12.4/jquery.min.js"></script>
+    <script src="lib/ECharts/echarts.min.js"></script>
+    <script src="lib/ECharts/theme/customed.js"></script>
+    <script src="lib/layui-v2.4.5/layui/layui.js"></script>
+    <link href="lib/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <script src="lib/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <!--[if lt IE 9]><script src="lib/html5shiv/r29/html5.min.js"></script><script src="lib/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+
+<!--**总用电曲线***********-->
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="mainColBox">
+            <div class="mainColHdTool clearfix">
+                <h2 class="fl">日总用电曲线</h2>
+                <div class="fr">
+                    <form class="clearfix">
+                        <div class="fl selectDate on">
+                            <div style="float:left;">
+                                <span class="dayTime2" style="color:#6fc71e;background-image:none;"></span>
+                            </div>
+                            <span style="background-image:none;">对比时间段</span>
+                            <div class="date dateLast">
+                                <input class="date_DD2 text" type="text" placeholder="YYYY/MM/DD" value="2019/01/20">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mainColBd">
+                <div class="main_yongdianquxian">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">今日累计用电<span class="dayTime">00:00～17:00</span></div>
+                                <div class="clearfix p2 dayValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 ddayValue">较前一日同时段<i class="iconfont up">&#xe78b;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 dayMaxTime">最大值<span>记录时间  08:08</span></div>
+                                <div class="clearfix p2 dayMaxValue">168.37<span>kWh</span></div>
+                                <div class="clearfix p3 preDayMaxValue">前一日最大值<span>183.43 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 dayMinTime">最小值<span>记录时间  03:08</span></div>
+                                <div class="clearfix p2 dayMinValue">35.23<span>kWh</span></div>
+                                <div class="clearfix p3 preDayMinValue">前一日最小值<span>32.92 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">小时平均用电</div>
+                                <div class="clearfix p2 dayAverageValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 preDayAverageValue">较前一日同时段<i class="iconfont up">&#xe78b;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bd">
+                        <div class="chart" id="yongdianquxianDD"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return '0';
+    }
+    var yongdianquxianDD = echarts.init(document.getElementById('yongdianquxianDD'));
+    var yongdianquxianDDChart = {
+        color: ['#6fc71e','#4ea8fa'],
+        title: {
+            //text: '有功电量',
+            //subtext: '单位(KW)'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                shadowStyle:{
+                    color:'rgba(150,150,150,0.1)'
+                }
+            },
+        },
+        grid: {
+            top:'50',
+            left: '0',
+            right: '0',
+            bottom: '30',
+            containLabel: true
+        },
+        legend: {
+            data: ['2019年01月02号用电量', '2019年01月20号用电量'],
+            align:'left',
+            //left:'50%',
+            top:'15'
+
+        },
+        xAxis: {
+            type:'category',
+            axisLine:{
+                lineStyle:{color:'#999'}
+            },
+            data: ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+        },
+        yAxis: {
+            //max:'700',
+
+            //type: 'value',
+            axisLine:{
+                lineStyle:{width:1,color:'#999'}
+            },
+            axisLabel: {
+                formatter: '{value} kWh'
+            }
+        },
+        series: [{
+            name: '2019年01月02号用电量',
+            type: 'line',
+            //smooth: 'true',
+            // barCategoryGap:'0',
+            barGap:'0',
+            data: [206,227,145,188,157,142,149,155,117,105,125,189,168,175,119,114,155,216,115,136,141,149,218]
+        },
+            {
+                name: '2019年01月20号用电量',
+                type: 'line',
+                //smooth: 'true',
+                // barCategoryGap:'0',
+                barGap:'0',
+                data: [164,110,128,103,125,114,109,173,137,105,221,145,119,207,105,110,117,127,154,115,153,133,111]
+            }
+        ]
+    };
+    function GetDayDataMore(time) {
+        var json = {
+            TodayTime2: '2020/01/16',
+            TodayTime: '00:00至14:00',
+            YesterdayTime: '2020/01/15',
+            TodayAllEnergy: '233440.00',
+            DayAllUpRate: '0.10%',
+            DayAllIsUpOrDown: '',
+            TodayMaxDataTime: '01:00',
+            TodayMaxData: '20240.00',
+            YesterdayMaxData: '20320.00',
+            TodayMinDataTime: '07:00',
+            TodayMinData: '16800.00',
+            YesterdayMinData: '15760.00',
+            DayAverageEnergy: '17956.92',
+            DayAverageUpRate: '0.26%',
+            DayAverageIsUpOrDown: '',
+            YesterdayData: [164,110,128,103,125,114,109,173,137,105,221,145,119,207,105,110,117,127,154,115,153,133,111],
+            TodayData: [206,227,145,188,157,142,149,155,117,105,125,189,168,175],
+        };
+        $(".dayTime2").html(json.TodayTime2);
+        $(".dayTime").html(json.TodayTime);
+        $(".date_DD2").val(json.YesterdayTime);
+        $(".dayValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+        var upordown = json.DayAllIsUpOrDown;
+        var udtext = '&#xe78b;';
+        if (json.DayAllIsUpOrDown == 'down') {
+            udtext='&#xe78a;';
+        }
+        $(".ddayValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext+'</i><span>' + json.DayAllUpRate+'</span>');
+
+        $(".dayMaxTime span").html('时间 ' + json.TodayMaxDataTime);
+        $(".dayMaxValue").html(json.TodayMaxData +'<span>kWh</span>');
+        $(".preDayMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+        $(".dayMinTime span").html('时间 ' + json.TodayMinDataTime);
+        $(".dayMinValue").html(json.TodayMinData + '<span>kWh</span>');
+        $(".preDayMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+        $(".dayAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+        var upordown2 = json.DayAverageIsUpOrDown;
+        var udtext2 = '&#xe78b;';
+        if (json.DayAverageIsUpOrDown == 'down') {
+            udtext2 = '&#xe78a;';
+        }
+        $(".preDayAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2+'</i><span>' + json.DayAverageUpRate+'</span>');
+
+        yongdianquxianDDChart.legend.data[0] = json.TodayTime2;
+        yongdianquxianDDChart.legend.data[1] = json.YesterdayTime;
+        yongdianquxianDDChart.series[0].name = json.TodayTime2;
+        yongdianquxianDDChart.series[1].name = json.YesterdayTime;
+        yongdianquxianDDChart.series[0].data = json.TodayData;
+        yongdianquxianDDChart.series[1].data = json.YesterdayData;
+        yongdianquxianDD.setOption(yongdianquxianDDChart);
+        /*var id = getQueryString("ID");
+        $.ajax({
+            url: '/Monitor/GetDayIndexDataEnergyMore?ID=' + id + '&t=' + Date.parse(new Date()) + '&lastTime=' + encodeURIComponent(time) + '&type=1',
+            type: "Get",
+            success: function (data) {
+                var json = JSON.parse(data);
+                $(".dayTime2").html(json.TodayTime2);
+                $(".dayTime").html(json.TodayTime);
+                $(".date_DD2").val(json.YesterdayTime);
+                $(".dayValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+                var upordown = json.DayAllIsUpOrDown;
+                var udtext = '&#xe78b;';
+                if (json.DayAllIsUpOrDown == 'down') {
+                    udtext='&#xe78a;';
+                }
+                $(".ddayValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext+'</i><span>' + json.DayAllUpRate+'</span>');
+
+                $(".dayMaxTime span").html('时间 ' + json.TodayMaxDataTime);
+                $(".dayMaxValue").html(json.TodayMaxData +'<span>kWh</span>');
+                $(".preDayMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+                $(".dayMinTime span").html('时间 ' + json.TodayMinDataTime);
+                $(".dayMinValue").html(json.TodayMinData + '<span>kWh</span>');
+                $(".preDayMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+                $(".dayAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+                var upordown2 = json.DayAverageIsUpOrDown;
+                var udtext2 = '&#xe78b;';
+                if (json.DayAverageIsUpOrDown == 'down') {
+                    udtext2 = '&#xe78a;';
+                }
+                $(".preDayAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2+'</i><span>' + json.DayAverageUpRate+'</span>');
+
+                yongdianquxianDDChart.legend.data[0] = json.TodayTime2;
+                yongdianquxianDDChart.legend.data[1] = json.YesterdayTime;
+                yongdianquxianDDChart.series[0].name = json.TodayTime2;
+                yongdianquxianDDChart.series[1].name = json.YesterdayTime;
+                yongdianquxianDDChart.series[0].data = json.TodayData;
+                yongdianquxianDDChart.series[1].data = json.YesterdayData;
+                yongdianquxianDD.setOption(yongdianquxianDDChart);
+            }
+        });*/
+    }
+    $(window).load(function () {
+        GetDayDataMore('');
+    });
+
+</script>
+<!--**/总用电曲线***********-->
+
+<!--**月总用电曲线***********-->
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="mainColBox">
+            <div class="mainColHdTool clearfix">
+                <h2 class="fl">月总用电曲线</h2>
+                <div class="fr">
+                    <form class="clearfix">
+                        <div class="fl selectDate on">
+                            <div style="float:left;">
+                                <span class="monthTime2" style="color:#6fc71e;background-image:none;"></span>
+                            </div>
+                            <span style="background-image:none;">对比时间段</span>
+                            <div class="date dateLast">
+                                <input class="date_MM2 text" type="text" placeholder="YYYY/MM" value="2019/02">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mainColBd">
+                <div class="main_yongdianquxian">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">本月累计用电<span class="monthTime">11/01～11/22</span></div>
+                                <div class="clearfix p2 monthValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 mmonthValue">较前一个月同时段<i class="iconfont up">&#xe78b;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 monthMaxTime">最大值<span>记录时间  08:08</span></div>
+                                <div class="clearfix p2 monthMaxValue">168.37<span>kWh</span></div>
+                                <div class="clearfix p3 preMonthMaxValue">前一月最大值<span>183.43 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 monthMinTime">最小值<span>记录时间  03:08</span></div>
+                                <div class="clearfix p2 monthMinValue">35.23<span>kWh</span></div>
+                                <div class="clearfix p3 preMonthMinValue">前一月最小值<span>32.92 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">日平均用电</div>
+                                <div class="clearfix p2 monthAverageValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 preMonthAverageValue">较前一月同时段<i class="iconfont down">&#xe78a;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bd">
+                        <div class="chart" id="yongdianquxianMM"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var yongdianquxianMM = echarts.init(document.getElementById('yongdianquxianMM'));
+    var yongdianquxianMMChart = {
+        color: ['#6fc71e', '#4ea8fa'],
+        title: {
+            //text: '有功电量',
+            //subtext: '单位(KW)'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                shadowStyle:{
+                    color:'rgba(150,150,150,0.1)'
+                }
+            },
+        },
+        grid: {
+            top:'50',
+            left: '0',
+            right: '0',
+            bottom: '30',
+            containLabel: true
+        },
+        legend: {
+            data: ['2019年01月用电量', '2019年02月用电量'],
+            align:'left',
+            //left:'50%',
+            top:'15'
+
+        },
+        xAxis: {
+            type:'category',
+            axisLine:{
+                lineStyle:{color:'#999'}
+            },
+            data: ["11-01","11-02","11-03","11-04","11-05","11-06","11-07","11-08","11-09","11-10","11-11","11-12","11-13","11-14","11-15","11-16","11-17","11-18","11-19","11-20","11-21","11-22","11-23","11-24","11-25","11-26","11-27","11-28","11-29","11-30"]
+        },
+        yAxis: {
+            //max:'700',
+
+            //type: 'value',
+            axisLine:{
+                lineStyle:{width:1,color:'#999'}
+            },
+            axisLabel: {
+                formatter: '{value} kWh'
+            }
+        },
+        series: [{
+            name: '2019年01月用电量',
+            type: 'line',
+            //smooth: 'true',
+            // barCategoryGap:'0',
+            barGap:'0',
+            data: [144, 189, 134, 202, 191, 170, 204, 161, 220, 179, 211, 157, 149, 154, 186, 221, 190, 198, 121, 216, 186, 207, 137, 163, 171, 157, 150, 108, 201, 225, 265]
+        },
+            {
+                name: '2019年02月用电量',
+                type: 'line',
+                //smooth: 'true',
+                // barCategoryGap:'0',
+                barGap:'0',
+                data: [187,122,209,184,223,171,219,173,175,101,182,110,219,219,111,215,127,121,147,201,199,203,146,210,113,142,229,204,181,189]
+            }
+        ]
+    };
+    function GetMonthDataMore(time) {
+        var json = {
+            TodayTime2: '2020/01',
+            YesterdayTime: '2019/12',
+            TodayTime: '01/01至01/16',
+            TodayAllEnergy: '5699520.00',
+            DayAllIsUpOrDown: '',
+            DayAllUpRate: '0.17%',
+            TodayMaxDataTime: '01/09',
+            TodayMaxData: '456640.00',
+            YesterdayMaxData: '454560.00',
+            TodayMinDataTime: '01/01',
+            TodayMinData: '105920.00',
+            YesterdayMinData: '400.00',
+            DayAverageEnergy: '357080.00',
+            DayAverageIsUpOrDown: '',
+            DayAverageUpRate: '12.60%',
+            XAxisData: ["01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07", "01-08", "01-09", "01-10", "01-11", "01-12", "01-13", "01-14", "01-15", "01-16", "01-17","01-18","01-19","01-20","01-21","01-22","01-23","01-24","01-25","01-26","01-27","01-28","01-29","01-30","01-31"],
+            YesterdayData: [187,122,209,184,223,171,219,173,175,101,182,110,219,219,111,215,127,121,147,201,199,203,146,210,113,142,229,204,181,189],
+            TodayData: [144, 189, 134, 202, 191, 170, 204, 161, 220, 179, 211, 157, 149, 154, 186, 221],
+        };
+        $(".monthTime2").html(json.TodayTime2);
+        $(".monthTime").html(json.TodayTime);
+        $(".date_MM2").val(json.YesterdayTime);
+        $(".monthValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+        var upordown = json.DayAllIsUpOrDown;
+        var udtext = '&#xe78b;';
+        if (json.DayAllIsUpOrDown == 'down') {
+            udtext = '&#xe78a;';
+        }
+        $(".mmonthValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext + '</i><span>' + json.DayAllUpRate + '</span>');
+
+        $(".monthMaxTime span").html('日期 ' + json.TodayMaxDataTime);
+        $(".monthMaxValue").html(json.TodayMaxData + '<span>kWh</span>');
+        $(".preMonthMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+        $(".monthMinTime span").html('日期 ' + json.TodayMinDataTime);
+        $(".monthMinValue").html(json.TodayMinData + '<span>kWh</span>');
+        $(".preMonthMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+        $(".monthAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+        var upordown2 = json.DayAverageIsUpOrDown;
+        var udtext2 = '&#xe78b;';
+        if (json.DayAverageIsUpOrDown == 'down') {
+            udtext2 = '&#xe78a;';
+        }
+        $(".preMonthAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2 + '</i><span>' + json.DayAverageUpRate + '</span>');
+
+        yongdianquxianMMChart.legend.data[0] = json.TodayTime2;
+        yongdianquxianMMChart.legend.data[1] = json.YesterdayTime;
+        yongdianquxianMMChart.series[0].name = json.TodayTime2;
+        yongdianquxianMMChart.series[1].name = json.YesterdayTime;
+        yongdianquxianMMChart.xAxis.data = json.XAxisData;
+        yongdianquxianMMChart.series[0].data = json.TodayData;
+        yongdianquxianMMChart.series[1].data = json.YesterdayData;
+
+        yongdianquxianMM.setOption(yongdianquxianMMChart);
+        /*var id = getQueryString("ID");
+        $.ajax({
+            url: '/Monitor/GetDayIndexDataEnergyMore?ID='+id+'&t=' + Date.parse(new Date()) + '&lastTime=' + encodeURIComponent(time) + '&type=2',
+            type: "Get",
+            success: function (data) {
+                var json = JSON.parse(data);
+                $(".monthTime2").html(json.TodayTime2);
+                $(".monthTime").html(json.TodayTime);
+                $(".date_MM2").val(json.YesterdayTime);
+                $(".monthValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+                var upordown = json.DayAllIsUpOrDown;
+                var udtext = '&#xe78b;';
+                if (json.DayAllIsUpOrDown == 'down') {
+                    udtext = '&#xe78a;';
+                }
+                $(".mmonthValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext + '</i><span>' + json.DayAllUpRate + '</span>');
+
+                $(".monthMaxTime span").html('日期 ' + json.TodayMaxDataTime);
+                $(".monthMaxValue").html(json.TodayMaxData + '<span>kWh</span>');
+                $(".preMonthMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+                $(".monthMinTime span").html('日期 ' + json.TodayMinDataTime);
+                $(".monthMinValue").html(json.TodayMinData + '<span>kWh</span>');
+                $(".preMonthMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+                $(".monthAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+                var upordown2 = json.DayAverageIsUpOrDown;
+                var udtext2 = '&#xe78b;';
+                if (json.DayAverageIsUpOrDown == 'down') {
+                    udtext2 = '&#xe78a;';
+                }
+                $(".preMonthAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2 + '</i><span>' + json.DayAverageUpRate + '</span>');
+
+                yongdianquxianMMChart.legend.data[0] = json.TodayTime2;
+                yongdianquxianMMChart.legend.data[1] = json.YesterdayTime;
+                yongdianquxianMMChart.series[0].name = json.TodayTime2;
+                yongdianquxianMMChart.series[1].name = json.YesterdayTime;
+                yongdianquxianMMChart.xAxis.data = json.XAxisData;
+                yongdianquxianMMChart.series[0].data = json.TodayData;
+                yongdianquxianMMChart.series[1].data = json.YesterdayData;
+
+                yongdianquxianMM.setOption(yongdianquxianMMChart);
+            }
+        });*/
+    }
+    GetMonthDataMore('');
+</script>
+<!--**/月总用电曲线***********-->
+
+<!--**年总用电曲线***********-->
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="mainColBox">
+            <div class="mainColHdTool clearfix">
+                <h2 class="fl">年总用电曲线</h2>
+                <div class="fr">
+                    <form class="clearfix">
+                        <div class="fl selectDate on">
+                            <div style="float:left;">
+                                <span class="yearTime2" style="color:#6fc71e;background-image:none;"></span>
+                            </div>
+                            <span style="background-image:none;">对比时间段</span>
+                            <div class="date dateLast">
+                                <input class="date_YYYY2 text" type="text" placeholder="YYYY" value="2019">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="mainColBd">
+                <div class="main_yongdianquxian">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">今年累计用电<span class="yearTime">11/01～11/22</span></div>
+                                <div class="clearfix p2 yearValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 yyearValue">较前一个月同时段<i class="iconfont up">&#xe78b;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 yearMaxTime">最大值<span>记录时间  08:08</span></div>
+                                <div class="clearfix p2 yearMaxValue">168.37<span>kWh</span></div>
+                                <div class="clearfix p3 preYearMaxValue">前一月最大值<span>183.43 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1 yearMinTime">最小值<span>记录时间  03:08</span></div>
+                                <div class="clearfix p2 yearMinValue">35.23<span>kWh</span></div>
+                                <div class="clearfix p3 preYearMinValue">前一月最小值<span>32.92 kWh</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <div class="clearfix p1">月平均用电</div>
+                                <div class="clearfix p2 yearAverageValue">2419.23<span>kWh</span></div>
+                                <div class="clearfix p3 preYearAverageValue">较前一月同时段<i class="iconfont down">&#xe78a;</i><span>1.2%</span></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bd">
+                        <div class="chart" id="yongdianquxianYYYY"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var yongdianquxianYYYY = echarts.init(document.getElementById('yongdianquxianYYYY'));
+    var yongdianquxianYYYYChart = {
+        color: ['#6fc71e', '#4ea8fa'],
+        title: {
+            //text: '有功电量',
+            //subtext: '单位(KW)'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+                shadowStyle:{
+                    color:'rgba(150,150,150,0.1)'
+                }
+            },
+        },
+        grid: {
+            top:'50',
+            left: '0',
+            right: '0',
+            bottom: '30',
+            containLabel: true
+        },
+        legend: {
+            data: ['2017年用电量', '2018年用电量'],
+            align:'left',
+            //left:'50%',
+            top:'15'
+
+        },
+        xAxis: {
+            type:'category',
+            axisLine:{
+                lineStyle:{color:'#999'}
+            },
+            data: [
+                "1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+        },
+        yAxis: {
+            //max:'700',
+
+            //type: 'value',
+            axisLine:{
+                lineStyle:{width:1,color:'#999'}
+            },
+            axisLabel: {
+                formatter: '{value} kWh'
+            }
+        },
+        series: [{
+            name: '2017年用电量',
+            type: 'line',
+            //smooth: 'true',
+            // barCategoryGap:'0',
+            barGap:'0',
+            data: [125,192,131,160,221,136,121,191,139,223,213,118]
+        },
+            {
+                name: '2018年用电量',
+                type: 'line',
+                //smooth: 'true',
+                // barCategoryGap:'0',
+                barGap:'0',
+                data: [138,153,103,204,138,189,134,105,203,163,146,196]
+            }
+        ]
+    };
+    function GetYearDataMore(time) {
+        var json = {
+            TodayTime2: '2020',
+            YesterdayTime: '2019',
+            TodayTime: '2020-01至01',
+            TodayAllEnergy: '5713280.00',
+            DayAllIsUpOrDown: '',
+            DayAllUpRate: '0%',
+            TodayMaxDataTime: '2020-01',
+            TodayMaxData: '5713280.00',
+            YesterdayMaxData: '11761440.00',
+            TodayMinDataTime: '2020-01',
+            TodayMinData: '5713280.00',
+            YesterdayMinData: '400.00',
+            DayAverageEnergy: '5713280.00',
+            DayAverageIsUpOrDown: 'down',
+            DayAverageUpRate: '33.70%',
+            YesterdayData: [125,192,131,160,221,136,121,191,139,223,213,118],
+            TodayData: [138],
+        };
+        $(".yearTime2").html(json.TodayTime2);
+        $(".yearTime").html(json.TodayTime);
+        $(".date_YYYY2").val(json.YesterdayTime);
+        $(".yearValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+        var upordown = json.DayAllIsUpOrDown;
+        var udtext = '&#xe78b;';
+        if (json.DayAllIsUpOrDown == 'down') {
+            udtext = '&#xe78a;';
+        }
+        $(".yyearValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext + '</i><span>' + json.DayAllUpRate + '</span>');
+
+        $(".yearMaxTime span").html('月份 ' + json.TodayMaxDataTime);
+        $(".yearMaxValue").html(json.TodayMaxData + '<span>kWh</span>');
+        $(".preYearMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+        $(".yearMinTime span").html('月份 ' + json.TodayMinDataTime);
+        $(".yearMinValue").html(json.TodayMinData + '<span>kWh</span>');
+        $(".preYearMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+        $(".yearAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+        var upordown2 = json.DayAverageIsUpOrDown;
+        var udtext2 = '&#xe78b;';
+        if (json.DayAverageIsUpOrDown == 'down') {
+            udtext2 = '&#xe78a;';
+        }
+        $(".preYearAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2 + '</i><span>' + json.DayAverageUpRate + '</span>');
+
+        yongdianquxianYYYYChart.legend.data[0] = json.TodayTime2;
+        yongdianquxianYYYYChart.legend.data[1] = json.YesterdayTime;
+        yongdianquxianYYYYChart.series[0].name = json.TodayTime2;
+        yongdianquxianYYYYChart.series[1].name = json.YesterdayTime;
+        yongdianquxianYYYYChart.series[0].data = json.TodayData;
+        yongdianquxianYYYYChart.series[1].data = json.YesterdayData;
+        yongdianquxianYYYY.setOption(yongdianquxianYYYYChart);
+        /*var id = getQueryString("ID");
+        $.ajax({
+            url: '/Monitor/GetDayIndexDataEnergyMore?ID='+id+'&t=' + Date.parse(new Date()) + '&lastTime=' + encodeURIComponent(time) + '&type=3',
+            type: "Get",
+            success: function (data) {
+                var json = JSON.parse(data);
+                $(".yearTime2").html(json.TodayTime2);
+                $(".yearTime").html(json.TodayTime);
+                $(".date_YYYY2").val(json.YesterdayTime);
+                $(".yearValue").html(json.TodayAllEnergy + '<span>kWh</span>');
+                var upordown = json.DayAllIsUpOrDown;
+                var udtext = '&#xe78b;';
+                if (json.DayAllIsUpOrDown == 'down') {
+                    udtext = '&#xe78a;';
+                }
+                $(".yyearValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown + '\">' + udtext + '</i><span>' + json.DayAllUpRate + '</span>');
+
+                $(".yearMaxTime span").html('月份 ' + json.TodayMaxDataTime);
+                $(".yearMaxValue").html(json.TodayMaxData + '<span>kWh</span>');
+                $(".preYearMaxValue").html(json.YesterdayTime + ' 最大值<span>' + json.YesterdayMaxData + ' kWh</span>');
+
+                $(".yearMinTime span").html('月份 ' + json.TodayMinDataTime);
+                $(".yearMinValue").html(json.TodayMinData + '<span>kWh</span>');
+                $(".preYearMinValue").html(json.YesterdayTime + ' 最小值<span>' + json.YesterdayMinData + ' kWh</span>');
+
+                $(".yearAverageValue").html(json.DayAverageEnergy + '<span>kWh</span>');
+                var upordown2 = json.DayAverageIsUpOrDown;
+                var udtext2 = '&#xe78b;';
+                if (json.DayAverageIsUpOrDown == 'down') {
+                    udtext2 = '&#xe78a;';
+                }
+                $(".preYearAverageValue").html('较 ' + json.YesterdayTime + ' 用电' + '<i class=\"iconfont ' + upordown2 + '\">' + udtext2 + '</i><span>' + json.DayAverageUpRate + '</span>');
+
+                yongdianquxianYYYYChart.legend.data[0] = json.TodayTime2;
+                yongdianquxianYYYYChart.legend.data[1] = json.YesterdayTime;
+                yongdianquxianYYYYChart.series[0].name = json.TodayTime2;
+                yongdianquxianYYYYChart.series[1].name = json.YesterdayTime;
+                yongdianquxianYYYYChart.series[0].data = json.TodayData;
+                yongdianquxianYYYYChart.series[1].data = json.YesterdayData;
+                yongdianquxianYYYY.setOption(yongdianquxianYYYYChart);
+            }
+        });*/
+    }
+    GetYearDataMore('');
+</script>
+<!--**/年总用电曲线***********-->
+<script>
+    //$(".mainColHdTool .selectDate span").click( function () { $(this).parent().toggleClass("on");});
+    layui.use(['layer','laydate','table'], function(){
+        var laydate = layui.laydate;
+        var layer = layui.layer;
+        var table = layui.table;
+        // layer.msg('最多选10个',{time: 1000});
+        //laydate.render({
+        //   elem: '.date_DD' //指定元素
+        //   ,theme: '#5487f2'
+        //,format: 'yyyy/MM/dd'
+        // });
+        laydate.render({
+            elem: '.date_DD2' //指定元素
+            , theme: '#5487f2'
+            , format: 'yyyy/MM/dd'
+            , max: -1
+            , done: function (value, date, endDate) {
+                GetDayDataMore(value); //得到日期生成的值，如：2017-08-18
+                //console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                //console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+            }
+        });
+        laydate.render({
+            elem: '.date_MM2' //指定元素
+            , theme: '#5487f2'
+            , format: 'yyyy/MM'
+            , type: 'month'
+            , max: -1
+            , done: function (value, date, endDate) {
+                GetMonthDataMore(value+'-01'); //得到日期生成的值，如：2017-08-18
+                //console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                //console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+            }
+        });
+        laydate.render({
+            elem: '.date_YYYY2' //指定元素
+            , theme: '#5487f2'
+            , format: 'yyyy'
+            , type: 'year'
+            , max: -1
+            , done: function (value, date, endDate) {
+                GetYearDataMore(value + '-01-01'); //得到日期生成的值，如：2017-08-18
+                //console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                //console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+            }
+        });
+    });
+</script>
+</body>
+</html>

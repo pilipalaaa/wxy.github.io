@@ -1,0 +1,148 @@
+
+<!Doctype html>
+<html>
+<head>
+    <script src="../SystemStyle/JS/navigator.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <title>广能能源科技有限公司</title>
+    <link href="../SystemStyle/CSS/Style.css" rel="stylesheet" />
+    <link href="../layui/css/layui.css" rel="stylesheet" />
+    <script src="../layui/layui.all.js" type="text/javascript"></script>
+    <script src="../SystemStyle/JS/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background: url("../SystemStyle/Images/Mask.png") no-repeat;
+            background-size: 100% 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .center {
+            width: 402px;
+            height: 604px;
+            margin: 0 0 0 -200px;
+            top: 50px;
+            left: 50%;
+            right: 0;
+            bottom: 0;
+            display: block;
+            position: fixed;
+            _position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <div style="text-align:center; padding-bottom:36px;"><img src="../SystemStyle/Images/logotubiao.png" style="border-radius: 10px;"/></div>
+    <div style="padding-bottom:20px;">
+        <p style="font-size:36px; color:rgba(255, 255, 255,1); line-height:44px; text-align:center;">欢迎使用能源管理系统</p>
+        <p style="font-size:12px; color:rgba(255, 255, 255,0.5); line-height:22px; text-align:center;">Welcome to use energy management system</p>
+    </div>
+    <div style="text-align:center; padding-bottom:65px;"><img src="../SystemStyle/Images/line.png"/></div>
+    <div>
+        <p style="font-size:14px; color:rgba(255, 255, 255,1); line-height:20px;">
+            用 户 名
+        </p>
+        <p style="font-size:14px; color:rgba(255, 255, 255,1); line-height:40px;">
+            <input type="text" id="UserID" value="" style="border-width:0 0 2px 0; border-color:rgba(255, 255, 255,0.5); background:none;color:rgba(255, 255, 255,0.7);padding:0 0 0 10px; width:392px; height:30px; line-height:30px;" />
+        </p>
+        <p style="font-size:14px; color:rgba(255, 255, 255,1); line-height:20px; margin:15px 0 0 0;">
+            密 码
+        </p>
+        <p style="font-size:14px; color:rgba(255, 255, 255,1); line-height:40px;padding-bottom:20px;">
+            <input type="Password" id="Password" onkeydown="keydown(event)" value="" style="border-width:0 0 2px 0; border-color:rgba(255, 255, 255,0.5); background:none;color:rgba(255, 255, 255,0.7);padding:0 0 0 10px; width:392px; height:30px; line-height:30px;" />
+        </p>
+        <div class="Message" style="font-size:12px; color:rgba(255, 255, 255,0.7); line-height:20px; margin:15px 0 0 0;padding-bottom:10px;">
+        </div>
+        <div style="line-height:50px;">
+            <button class="layui-btn" style="width:402px; height:48px; background-color:#ffffff; color:#4A90E2;font-size:18px;border-radius:8px;" onclick="Login()">登录</button>
+        </div>
+    </div>
+    <!--<div style="border-top: 2px solid rgba(255, 255, 255,0.5);text-align:center;margin-top:50px;padding-top:10px;">
+        <p style="font-size:14px; color:rgba(255, 255, 255,0.8); line-height:18px;">
+            广能能源科技有限公司
+        </p>
+    </div>-->
+</div>
+<script>
+    /*function keydown(event) {
+        var e = event ? event : (window.event ? window.event : null);
+        if (e.keyCode == 13) {
+            e.keyCode = 0;
+            e.returnValue = false;
+            Login();
+        }
+    }
+    function Reset() {
+        $('#UserID').val('');
+        $('#Password').val('');
+        $('#Message').html('');
+    }
+    function Login() {
+        $.ajax({
+            url: '../System/LoginValidate',
+            type: "Post",
+            data: { "UserID": document.getElementById('UserID').value, "Passwordss": document.getElementById("Password").value },
+            success: function (data) {
+                var json = new Function("return" + data)()
+                if (json.Code == '0000') {
+                    setCookie("username", document.getElementById('UserID').value, 30);
+                    window.location = "/System/Index";
+                } else {
+                    $('.Message').html(json.Message);
+                }
+            }
+        });
+    }
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden'; document.getElementsByTagName('body')[0].scroll = "no";
+
+
+    //写cookies
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+    }
+
+    //读取cookies
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+        if (arr = document.cookie.match(reg))
+
+            return (arr[2]);
+        else
+            return "";
+    }
+    document.getElementById('UserID').value = getCookie("username");*/
+    function keydown(event) {
+        var e = event ? event : (window.event ? window.event : null);
+        if (e.keyCode == 13) {
+            e.keyCode = 0;
+            e.returnValue = false;
+            Login();
+        }
+    }
+    function Login() {
+        if($('#UserID').val() == '123456'){
+            if($('#Password').val() == '123456'){
+                window.location = "../System/Index.html";
+            }
+        }
+        else{
+            $('.Message').html("登录失败，用户名或密码有误！");
+        }
+    }
+</script>
+<script src="../SystemStyle/JS/js.js" charset="UTF-8" type="text/javascript"></script>
+<script>
+    javascript: window.history.forward(1);
+</script>
+</body>
+</html>

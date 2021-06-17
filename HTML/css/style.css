@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+*::selection { background: none; }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.ani, .ani * { transition-property: all; -ms-transition-property: all; -moz-transition-property: all; -webkit-transition-property: all; -o-transition-property: all; transition-duration: .2s; -ms-transition-duration: .2s; -moz-transition-duration: .2s; -webkit-transition-duration: .2s; }
+.noani, .noani * { transition-duration: 0s; -ms-transition-duration: 0s; -moz-transition-duration: 0s; -webkit-transition-duration: 0s; }
+from, div, dl, dd, dt, ol, ul, li, a, img, input, h1, h2, h3, h4, h5, h6, table, a, p, form, em, i { margin: 0; padding: 0; border: 0; font-weight: normal; }
+ul, li, dl, dd, dt, h1, h2, h3, h4, h5, h6, form, em, i { list-style-type: none; font-style: normal; }
+body { margin: 0 auto; padding: 0; font: normal 14px/2 "PingFangSC-Regular", "Microsoft YaHei", "SimHei", "SimSun", "Helvetica Neue", Arial; color: #666; word-break: break-all; text-align: justify; background: #f3f4f6; padding: 15px 15px 18px; }
+img, li { vertical-align: top; }
+input { font-family: "Microsoft YaHei" }
+.clearfix { zoom: 1; }
+.clearfix:after { content: ""; display: block; clear: both; height: 0; }
+*:focus { outline: none; }
+a { text-decoration: none; color: #858687; }
+a:hover { color: #0f98ff; }
+.fl { float: left !important; }
+.fr { float: right !important; }
+.wrap { width: 1300px; margin: 0 auto; max-width: 1920px; }
+.textindent { text-indent: 0 !important; }
+.border-none { border: none !important; }
+.text-overflow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@font-face { font-family: 'iconfont';  /* project id 398496 */ src: url('//at.alicdn.com/t/font_398496_synsfkr8n6n.eot'); src: url('//at.alicdn.com/t/font_398496_synsfkr8n6n.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_398496_synsfkr8n6n.woff2') format('woff2'), url('//at.alicdn.com/t/font_398496_synsfkr8n6n.woff') format('woff'), url('//at.alicdn.com/t/font_398496_synsfkr8n6n.ttf') format('truetype'), url('//at.alicdn.com/t/font_398496_synsfkr8n6n.svg#iconfont') format('svg'); }
+.iconfont { font-family: "iconfont" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale; vertical-align: middle; }
+.chart { width: 100%; height: 100%; position: absolute; top: 0; }
+.mainColBox { min-height: 200px; border-radius: 5px; box-shadow: 1px 2px 6px 0 #e5e5e5;opacity: 1;}
+.mainColHdTool { padding: 0 30px; line-height: 50px; border-bottom: 1px solid #eee; color: #333; position: relative; }
+.mainColHdTool h2 { font-size: 16px; padding: 0 20px 0 0; }
+.mainColHdTool span.date { font-size: 12px; }
+.mainColHdTool a.more { font-size: 14px; color: #5487F2; }
+.mainColHdTool .tab { }
+.mainColHdTool .tab ul { }
+.mainColHdTool .tab li { float: left; padding: 0 0 0 10px; }
+.mainColHdTool .tab li a { display: inline-block; border: 1px solid #E1E3E4; border-radius: 2px; line-height: 28px; min-width: 28px; text-align: center; }
+.mainColHdTool .tab li.on a { background: #5487F2; border-color: #5487F2; color: #fff; }
+/*工具栏选电表*/
+.mainColHdTool .select { }
+.mainColHdTool .select dl { }
+.mainColHdTool .select dd { padding: 13px 0 0 106px; text-align: left; line-height: 1; }
+.mainColHdTool .select dd span { display: inline-block; border: 1px solid #ddd; border-radius: 24px; line-height: 22px; padding: 0 10px; margin-left: -106px; color: #3a3a3a; cursor: pointer; }
+.mainColHdTool .select dd span i { display: inline-block; line-height: 15px; width: 15px; text-align: center; }
+.mainColHdTool .select dd a { display: inline-block; border: 1px solid #5487F2; border-radius: 24px; line-height: 22px; padding: 0 10px; margin-left: 10px; color: #3a3a3a; margin-bottom: 5px; position: relative; }
+.mainColHdTool .select dd a i { font-size: 10px; line-height: 20px; width: 20px; height: 20px; background: red; color: #fff; position: absolute; text-align: center; border-radius: 100%; right: -10px; top: -10px; display: none; }
+.mainColHdTool .select dd a:hover i { display: block; }
+.mainColHdTool .select dt { height: 411px; position: absolute; background: #fff; width: 100%; left: 0; border-radius: 0 0 5px 5px; z-index: 10; border: 1px solid #419bf9; display: none; }
+.mainColHdTool .select dt .dtContainer { padding: 20px 30px 60px; height: 100%; position: relative; }
+.mainColHdTool .select dt .bd { width: 100%; height: 50px; border-top: 1px solid #eee; position: absolute; bottom: 0; left: 0; text-align: right; padding: 0 30px; }
+.mainColHdTool .select dt .bd .btn { width: 60px; height: 24px; display: inline-block; background: #5487f2; font-size: 12px; color: #fff; margin-left: 20px; border-radius: 5px; cursor: pointer; line-height: 22px; }
+.mainColHdTool .select dt .bd .btn.reset { border: 1px solid #5487f2; background: #fff; color: #333; }
+.mainColHdTool .select dt .hd { height: 100%; }
+.mainColHdTool .select dt .hd .scrool { height: 220px; }
+.mainColHdTool .select dt .hd h2, .mainColHdTool .select dt .hd li h3 { line-height: 30px; color: #333; font-size: 14px; background: url(../images/001.gif) no-repeat 0 50%; padding: 0 0 0 20px; }
+.mainColHdTool .select dt .hd ul { }
+.mainColHdTool .select dt .hd li {float: left;padding: 0 30px 0 20px;width: 16%; zoom: 1;}
+.mainColHdTool .select dt .hd li:after { content: ""; display: block; clear: both; height: 0; }
+.mainColHdTool .select dt .hd li h3 { }
+.mainColHdTool .select dt .hd li label {float: left;background: url(../images/002.gif) no-repeat 0 50%;color: #666;font-size: 12px;line-height: 22px;cursor: pointer;line-height: 40px;position: relative;}
+input[type="checkbox"]+i {content: "";display: block;width: 14px;height: 14px;background: url('../images/checkbox.png') no-repeat center center #fff;z-index: 2;=: 5pxvertical-align: middle;position: absolute;right: 0;top: 50%;margin-top: -7px;}
+input[type="checkbox"]:checked+i { background: url('../images/checkbox-2.png') no-repeat center center; border: none; }
+.checkbox {position: relative;padding: 0 20px 0 20px;display: inline-block;/* line-height: 30px; *//* min-height: 30px; */}
+.checkbox input[type='checkbox'] { position: absolute; display: none; clip: rect(0, 0, 0, 0); left: 5px; top: 50%; margin-top: -3px; width: 5px; height: 5px; }
+.mainColHdTool .select .on dd span { background: #5487f2; border-color: #fff; color: #fff; }
+.mainColHdTool .select .on dt { display: block; }
+.mainColBd { padding: 0 30px; }
+/*工具栏选时间*/
+.mainColHdTool .selectDate { padding: 0 0 0 5px; }
+.mainColHdTool .selectDate .date { border: 1px solid #E1E3E4; width: 130px; height: 30px; border-radius: 2px; padding: 0 27px 0 10px;/* margin-top: 10px; */ float: left; position: relative; margin-top: 11px; margin-left: 15px; }
+.mainColHdTool .selectDate .date .text { width: 100%; line-height: 28px; height: 28px; float: left; font-size: 12px; position: absolute; left: 0; top: 0; padding: 0 0 0 10px; }
+.mainColHdTool .selectDate .date:before { content: ''; width: 27px; border-left: 1px solid #e1e3e4; background: url(../images/003.gif) no-repeat 50% 50%; height: 29px; position: absolute; right: 0; top: 0; z-index: 2; }
+.mainColHdTool .selectDate .dateFirst { }
+.mainColHdTool .selectDate .dateLast { display: none }
+.mainColHdTool .selectDate .dateLast:after { content: '-'; position: absolute; top: 0; left: -15px; height: 30px; width: 15px; line-height: 30px; text-align: center; color: #595959; }
+.mainColHdTool .selectDate span { font-size: 12px; color: #333; background: url(../images/checkbox.png) no-repeat 0 50%; padding: 0 0 0 18px; margin-left: 15px; cursor: pointer; float: left; }
+.mainColHdTool .selectDate.on span { background-image: url(../images/checkbox-2.png) }
+.mainColHdTool .selectDate.on .dateLast { display: block; }
+/**S首页用能概况*******************/
+.main_yongneng { }
+.main_yongneng ul { border-right: 1px solid rgba(0,0,0,0); }
+.main_yongneng li { float: left; width: 33.3333%; padding: 0 20px 20px; border-left: 1px solid rgba(0,0,0,0); height: 280px; }
+.main_yongneng .hd { text-align: center; padding: 30px 0 30px 0; line-height: 1; color: #333; }
+.main_yongneng .hd .h3 { font-size: 22px; color: #5487F2; }
+.main_yongneng .hd .h3 span { font-size: 16px; }
+.main_yongneng .hd h4 { font-size: 14px; padding: 10px 0; }
+.main_yongneng .text { line-height: 22px; }
+.main_yongneng .text p { font-size: 12px; }
+.main_yongneng .text p span { font-size: 14px; display: inline-block; padding: 0 0 0 10px; }
+.main_yongneng .text p:first-of-type {color: #999; }
+.main_yongneng .text p:last-of-type {  }
+.main_yongneng .text i { font-size: 14px; line-height: 22px; color: #FD6E4C; display: inline-block; padding: 0 0 0 5px; }
+.main_yongneng .text i.up { }
+.main_yongneng .text i.down { color: #7ed321; }
+.main_yongneng .bd { position: relative; height: 100px; }
+/**E首页用能概况******************/
+/**S首页区域用电******************/
+.main_quyuyongdian { position: relative; height: 280px; }
+/**E首页区域用电******************/
+/**S首页当日总用电******************/
+.main_zongyongdian { position: relative; height: 410px; }
+/**E首页当日总用电******************/
+/**S首页电量合计******************/
+.main_dianliangheji { position: relative; height: 410px; }
+/**E首页电量合计******************/
+/**S总用电曲线******************/
+.main_yongdianquxian { }
+.main_yongdianquxian .bd { position: relative; height: 410px; }
+.main_yongdianquxian ul { border: 1px solid #eee; border-width: 0 1px 1px 0; }
+.main_yongdianquxian li { float: left; width: 25%; border-left: 1px solid #eee; }
+.main_yongdianquxian .info { padding: 20px 40px; }
+.main_yongdianquxian .p1 { font-size: 14px; color: #333; }
+.main_yongdianquxian .p1 span { font-size: 13px; color: #999; float: right; }
+.main_yongdianquxian .p2 { font-size: 22px; color: #333333; }
+.main_yongdianquxian .p2 span { font-size: 14px; padding: 0 0 0 10px; }
+.main_yongdianquxian .p3 { font-size: 12px; color: #999999; line-height: 30px; }
+.main_yongdianquxian .p3 span { float: right; font-size: 14px; }
+.main_yongdianquxian .p3 i { font-size: 14px; line-height: 22px; color: #FD6E4C; display: inline-block; padding: 5px 0 0 5px; float: right; }
+.main_yongdianquxian .p3 i.up { }
+.main_yongdianquxian .p3 i.down { color: #7ed321; }
+/**E总用电曲线******************/

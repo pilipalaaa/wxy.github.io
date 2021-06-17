@@ -1,0 +1,424 @@
+<!Doctype html>
+<html>
+<head>
+    <script src="SystemStyle/JS/navigator.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <title>my webpage</title>
+    <link href="SystemStyle/Images/logotubiao.png" rel="icon">
+    <link href="SystemStyle/CSS/Style.css" rel="stylesheet" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+    <script src="layui/layui.all.js" type="text/javascript"></script>
+    <script src="SystemStyle/JS/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script>window.parent.hideSideAndFoot();</script>
+</head>
+
+<body style="min-width:1180px;">
+<style>
+    .rightA {
+        float: right;
+        margin-right: 14px;
+    }
+    .hLevel {
+        width: 190px;
+        line-height: 40px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #3785E0 !important;
+        font-weight: 600;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .hLevel0 {
+        width: 186px;
+        line-height: 44px;
+        font-size: 14px;
+        font-weight: 600;
+        background: #EEEEEE;
+        padding: 0 0 0 14px;
+    }
+
+    .hLevel1:hover, .hLevel2:hover, .hLevel3:hover, .hLevel4:hover, .hLevel5:hover {
+        background: #1E9FFF;
+    }
+
+    .hLevel1 {
+        width: 186px;
+        line-height: 44px;
+        font-size: 14px;
+        padding: 0 0 0 14px;
+    }
+
+    .hLevel2 {
+        width: 174px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 0 0 26px;
+    }
+    .hLevel3 {
+        width: 162px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 0 0 38px;
+    }
+    .hLevel4 {
+        width: 150px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 0 0 50px;
+    }
+    .hLevel5 {
+        width: 138px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 0 0 62px;
+    }
+</style>
+<input type="hidden" id="ReLoad" url="" val="" />
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header" id="Column" style="background-color:rgb(25,25,25);">
+        <div class="layui-logo" style="color:#ffffff; cursor:pointer;">能源管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="javascript:;">首页</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../HTML/index3.html" target='ifrMain'>首页</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">能耗监测</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../Monitor/HourElectricityData.html" target='ifrMain'>小时电量数据</a></dd>
+                    <dd><a href="../Monitor/HourNowData.html" target='ifrMain'>小时实时数据</a></dd>
+                    <dd><a href="../Monitor/HourActivePowerData.html" target='ifrMain'>小时有功功率</a></dd>
+                    <dd><a href="../Monitor/HourPowerFactorData.html" target='ifrMain'>小时功率因数</a></dd>
+                    <dd><a href="../Monitor/DayElectricityData.html" target='ifrMain'>每日电量数据</a></dd>
+                    <dd><a href="../Monitor/MonthElectricityData.html" target='ifrMain'>每月电量数据</a></dd>
+                    <!-- <dd><a href="../Monitor/HourPhaseAngleData.html" target='ifrMain'>相位角与电网频率</a></dd> -->
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">统计查询</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../Monitor/HourElectricityDataBan.html" target='ifrMain'>小时电量统计</a></dd>
+                    <dd><a href="../Monitor/HourElectricityDataX.html" target='ifrMain'>时段电量统计</a></dd>
+                </dl>
+            </li>
+                </dl>
+            </li> -->
+            <li class="layui-nav-item">
+                <a href="javascript:;">系统管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../System/AmmeterEventList.html" target='ifrMain'>电表事件列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">结业报告</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../System/report.html" target='ifrMain'>《Web应用基础》课程结业报告</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="../SystemStyle/Images/头像.png" class="layui-nav-img">
+                    wxy
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../System/UserUP.html" target="ifrMain" title="用户中心">用户中心</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="../System/LoginOut.html">退出</a></li>
+        </ul>
+    </div>
+    <div class="layui-side" style="background:#ffffff;border: 1px solid #DDDDDD;">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航）DY -->
+            <div class="lf_menu">
+                <div class="lf_menu2">
+                    <div class="dtree ifrSrc">
+                        <div id="area">
+                            <div id="areaDiv" class="hLevel"><a href="#" down="0" level="-1" class="dtree-btn btn-show1" show="" val="0" style="color: #3785E0">区域信息</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-body" style="min-width:980px;">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <iframe name="ifrMain" id="ifrMain" frameborder="no" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;height: 100%;width: 100%;border: none;" src="../HTML/index3.html"></iframe>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        Copyright © 2020-2021 xxx All Rights Reserved
+    </div>
+</div>
+<script src="../layui/layui.all.js" type="text/javascript"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+<script>
+    function Exit() {
+        window.location.href = '../System/LoginOut.html';
+    }
+
+    function LF_menu(str, val) {
+        $("#ifrMain").attr("src", str);
+        $("#ReLoad").attr("val", val);
+        if (val == 1) {
+            $(".dtree  .btn-show").css('color', '');
+            $(".dtree  .btn-show").eq(0).css('color', '#ff7500');
+        } else {
+            $(".dtree  .btn-show").css('color', '');
+        }
+    }
+    var icon = {
+        root: '../SystemStyle/Images/ico/base.gif',
+        folder: '../SystemStyle/Images/ico/folder.gif',
+        folderOpen: '../SystemStyle/Images/ico/folderopen.gif',
+        node: '../SystemStyle/Images/ico/page.gif',
+        empty: '../SystemStyle/Images/ico/empty.gif',
+        line: '../SystemStyle/Images/ico/line.gif',
+        join: '../SystemStyle/Images/ico/join.gif',
+        joinBottom: '../SystemStyle/Images/ico/joinbottom.gif',
+        plus: '../SystemStyle/Images/ico/plus.gif',
+        plusBottom: '../SystemStyle/Images/ico/plusbottom.gif',
+        minus: '../SystemStyle/Images/ico/minus.gif',
+        minusBottom: '../SystemStyle/Images/ico/minusbottom.gif',
+        nlPlus: '../SystemStyle/Images/ico/nolines_plus.gif',
+        nlMinus: '../SystemStyle/Images/ico/nolines_minus.gif',
+        plus1: '../SystemStyle/Images/ico/加.png',
+        minus1: '../SystemStyle/Images/ico/减.png',
+        /*plus2: '../SystemStyle/Images/ico/收起.png',
+        minus2: '../SystemStyle/Images/ico/下拉.png',*/
+        plus2: '../SystemStyle/Images/ico/减.png',
+        minus2: '../SystemStyle/Images/ico/加.png'
+    }
+
+    $('.dtree .dtree-btn').live("click", function () {
+        if ($(this).attr("show") == "") {
+            var down = $(this).attr('Down');
+            $(this).attr("show", "0")
+            var le = $(this).attr("level");
+            if (le == 0) {
+                $(this).children("img").attr("src", icon.minus1);
+            } else {
+                $(this).children("img").attr("src", icon.minus2);
+            }
+            AreaDown(down, this);
+        } else {
+            $(this).attr("show", "")
+            var cls = $(this).parent().attr("id");
+            var le = $(this).attr("level");
+            removeChild(cls);
+            if (le == 0) {
+                $(this).children("img").attr("src", icon.plus1);
+            } else {
+                $(this).children("img").attr("src", icon.plus2);
+            }
+        }
+    });
+
+    function removeChild(cls) {
+        var ls = $("." + cls);
+        for (var i = 0; i < ls.length; i++) {
+            var m = $(ls[i]).attr("id");
+            if ($("." + m).length > 0) {
+                removeChild(m);
+            }
+            $(ls[i]).remove();
+        }
+    }
+
+    var AreaDownbo = false;
+    function AreaDown(ID, th) {
+        if (AreaDownbo)
+            return;
+        AreaDownbo = false;
+        var str = "";
+        var pAll = "";
+        var le = parseInt($(th).attr('level')) + 1;
+        var cls = "hLevel" + le;
+
+        for (var i = 0; i < myobj.length; i++) {
+            var cls1 = "areadiv" + myobj[i].ParentID;
+            var id = "areadiv" + myobj[i].ID;
+            var v = "<div id='"+id+"' class='" + cls + " " + cls1+"'>";
+
+            //if (le > 0) {
+            //    for (var j = 0; j < le; j++) {
+            //        v += "<img src='" + icon.empty + "'/>";
+            //    }
+            //}
+            var tempName = myobj[i].Name;
+            if (tempName.length > 9) {
+                tempName = tempName.substring(0, 9) + '...';
+            }
+            v += "<a href='#' class='btn-show' val='" + myobj[i].ID + "' title='" + myobj[i].Name + "'>" + tempName + "</a>";
+            //展开、收起图片
+            if (myobj[i].COUNT > 0) {
+                if (le == 0) {
+                    v += "<a href='#1' down='" + myobj[i].ID + "' class='dtree-btn rightA' level='" + le + "' last='1' show=''><img src='" + icon.plus1 + "'/></a>";
+                } else {
+                    v += "<a href='#1' down='" + myobj[i].ID + "' class='dtree-btn rightA' level='" + le + "' last='1' show=''><img src='" + icon.plus2 + "'/></a>";
+                }
+            }
+            v += "</div>";
+            str += v;
+        }
+        $(th).parent('div').after(str);
+        if (boZero) {
+            for (var i = 0; i < $('.dtree .dtree-btn').length; i++) {
+                if ($('.dtree .dtree-btn').eq(i).attr("level") == "0") {
+                    Zero[Zero.length] = $('.dtree .dtree-btn').eq(i);
+                }
+            }
+            boZero = false;
+            if (Zero.length > 0) {
+                $(Zero[0]).click();
+                Zero.splice(0, 1);
+            }
+        } else if (boOne) {
+            if (Zero.length > 0) {
+                $(Zero[0]).click();
+                Zero.splice(0, 1);
+            } else {
+                boOne = false;
+                for (var i = 0; i < $('.dtree .dtree-btn').length; i++) {
+                    if ($('.dtree .dtree-btn').eq(i).attr("level") == "1") {
+                        One[One.length] = $('.dtree .dtree-btn').eq(i);
+                    }
+                }
+                if (One.length > 0) {
+                    $(One[0]).click();
+                    One.splice(0, 1);
+                }
+            }
+        } else if (BoTwo) {
+            if (One.length > 0) {
+                $(One[0]).click();
+                One.splice(0, 1);
+            } else {
+                BoTwo = false;
+            }
+        }
+        /*$.ajax({
+            url: '/Area/AreaDownJson?ID=' + ID + "&NotID=-8&_r=" + Math.random(),
+            type: "Post",
+            success: function (data) {
+                AreaDownbo = false;
+                var myobj = eval(data);
+                var str = "";
+                var pAll = "";
+                var le = parseInt($(th).attr('level')) + 1;
+                var cls = "hLevel" + le;
+
+                for (var i = 0; i < myobj.length; i++) {
+                    var cls1 = "areadiv" + myobj[i].ParentID;
+                    var id = "areadiv" + myobj[i].ID;
+                    var v = "<div id='"+id+"' class='" + cls + " " + cls1+"'>";
+
+                    //if (le > 0) {
+                    //    for (var j = 0; j < le; j++) {
+                    //        v += "<img src='" + icon.empty + "'/>";
+                    //    }
+                    //}
+                    var tempName = myobj[i].Name;
+                    if (tempName.length > 9) {
+                        tempName = tempName.substring(0, 9) + '...';
+                    }
+                    v += "<a href='#' class='btn-show' val='" + myobj[i].ID + "' title='" + myobj[i].Name + "'>" + tempName + "</a>";
+                    //展开、收起图片
+                    if (myobj[i].COUNT > 0) {
+                        if (le == 0) {
+                            v += "<a href='#1' down='" + myobj[i].ID + "' class='dtree-btn rightA' level='" + le + "' last='1' show=''><img src='" + icon.plus1 + "'/></a>";
+                        } else {
+                            v += "<a href='#1' down='" + myobj[i].ID + "' class='dtree-btn rightA' level='" + le + "' last='1' show=''><img src='" + icon.plus2 + "'/></a>";
+                        }
+                    }
+                    v += "</div>";
+                    str += v;
+                }
+                $(th).parent('div').after(str);
+                if (boZero) {
+                    for (var i = 0; i < $('.dtree .dtree-btn').length; i++) {
+                        if ($('.dtree .dtree-btn').eq(i).attr("level") == "0") {
+                            Zero[Zero.length] = $('.dtree .dtree-btn').eq(i);
+                        }
+                    }
+                    boZero = false;
+                    if (Zero.length > 0) {
+                        $(Zero[0]).click();
+                        Zero.splice(0, 1);
+                    }
+                } else if (boOne) {
+                    if (Zero.length > 0) {
+                        $(Zero[0]).click();
+                        Zero.splice(0, 1);
+                    } else {
+                        boOne = false;
+                        for (var i = 0; i < $('.dtree .dtree-btn').length; i++) {
+                            if ($('.dtree .dtree-btn').eq(i).attr("level") == "1") {
+                                One[One.length] = $('.dtree .dtree-btn').eq(i);
+                            }
+                        }
+                        if (One.length > 0) {
+                            $(One[0]).click();
+                            One.splice(0, 1);
+                        }
+                    }
+                } else if (BoTwo) {
+                    if (One.length > 0) {
+                        $(One[0]).click();
+                        One.splice(0, 1);
+                    } else {
+                        BoTwo = false;
+                    }
+                }
+            }
+        });*/
+    }
+
+    var boZero = true, boOne = true, BoTwo = true;
+    var Zero = new Array();
+    var One = new Array();
+
+    window.onload = function () {
+        $('.dtree .dtree-btn').click();
+        $('.dtree .dtree-btn').removeClass("dtree-btn");
+        $('#ReLoad').attr("url", "/Other/Index").attr("val", "1");
+        $(".layui-logo").click(function () {
+            //$("#ifrMain").attr("src", "/HTML/Index.html");
+            window.location.reload();
+        });
+    }
+    //重新加载树
+    function reloadTree() {
+        $('.lf_menu2').html("<div class='dtree ifrSrc'><div><div class='hLevel'><a href='#' down='0' level='-1' class='dtree-btn btn-show' show='' val='0' style='color: #3785E0'>区域信息</a></div></div></div>");
+        $('.dtree .dtree-btn').click();
+        $('.dtree .dtree-btn').addClass("btn-show");
+        $('.dtree .dtree-btn').removeClass("dtree-btn");
+    }
+    //刷新
+    $("#ReLoad").click(function () {
+        reloadTree();
+    })
+</script>
+
+<script src="../SystemStyle/JS/js.js" charset="UTF-8" type="text/javascript"></script>
+<script>
+    javascript: window.history.forward(1);
+</script>
+</body>
+</html>

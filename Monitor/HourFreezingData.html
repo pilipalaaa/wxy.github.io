@@ -1,0 +1,691 @@
+<!Doctype html>
+<html>
+<head>
+    <script src="../SystemStyle/JS/navigator.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DayFrozen</title>
+    <link href="../SystemStyle/CSS/Style.css" rel="stylesheet" />
+    <link href="../layui/css/layui.css" rel="stylesheet" />
+    <link href="../SystemStyle/CSS/layuichange.css" rel="stylesheet" />
+    <script src="../SystemStyle/JS/jquery-1.7.2.min.js"></script>
+    <script src="../layui/layui.all.js" type="text/javascript"></script>
+    <script src="../layui/MyLayerPage.js" type="text/javascript"></script>
+    <script>window.parent.hideSideAndFoot();</script>
+</head>
+
+<body style=" background:#ffffff; position:absolute;left:10px;right:10px;top:3px;bottom:3px">
+
+<div class="MainShow">
+    当前位置：统计查询 > 采集日报表
+</div>
+<form class="layui-form" action='#<!--../Monitor/HourFreezingData.html-->' method="post">
+    <input name="index" id="Index" style="display: none" />
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">日期时间：</label>
+            <div class="layui-input-block">
+                <input class="layui-input" type="text" id="Date1" name="Date1" value="2020-01-15" />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <select name="Date2" id="Date2">
+                <option value="00:00">00:00</option>
+                <option value="01:00">01:00</option>
+                <option value="02:00">02:00</option>
+                <option value="03:00">03:00</option>
+                <option value="04:00">04:00</option>
+                <option value="05:00">05:00</option>
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+            </select>
+        </div>
+        <div class="layui-inline" style="width:20px;text-align:center;">
+            -
+        </div>
+        <div class="layui-inline">
+            <input class="layui-input" type="text" id="Date3" name="Date3" value="2020-01-16" />
+        </div>
+        <div class="layui-inline">
+            <select name="Date4" id="Date4">
+                <option value="00:00">00:00</option>
+                <option value="01:00">01:00</option>
+                <option value="02:00">02:00</option>
+                <option value="03:00">03:00</option>
+                <option value="04:00">04:00</option>
+                <option value="05:00">05:00</option>
+                <option value="06:00">06:00</option>
+                <option value="07:00">07:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+            </select>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-input-block">
+                <input class="layui-btn layui-btn-normal layui-btn-sm" value="查询" id="SelectBtn" type="submit" />
+                <input class="layui-btn layui-btn-normal layui-btn-sm" value="导出数据" onclick="DayFrozenExport()" type="button" />
+            </div>
+        </div>
+    </div>
+</form>
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>房号/位置</th>
+            <th style="width:60px;">08:00</th>
+            <th style="width:60px;">09:00</th>
+            <th style="width:60px;">10:00</th>
+            <th style="width:60px;">11:00</th>
+            <th style="width:60px;">12:00</th>
+            <th style="width:60px;">13:00</th>
+            <th style="width:60px;">14:00</th>
+            <th style="width:60px;">15:00</th>
+            <th style="width:60px;">16:00</th>
+            <th style="width:60px;">17:00</th>
+            <th style="width:60px;">18:00</th>
+            <th style="width:60px;">19:00</th>
+            <th style="width:60px;">20:00</th>
+            <th style="width:60px;">21:00</th>
+            <th style="width:60px;">22:00</th>
+            <th style="width:60px;">23:00</th>
+            <th style="width:60px;">00:00</th>
+            <th style="width:60px;">01:00</th>
+            <th style="width:60px;">02:00</th>
+            <th style="width:60px;">03:00</th>
+            <th style="width:60px;">04:00</th>
+            <th style="width:60px;">05:00</th>
+            <th style="width:60px;">06:00</th>
+            <th style="width:60px;">07:00</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>步云站F19进线</td>
+            <td>4960.00</td>
+            <td>3680.00</td>
+            <td>7200.00</td>
+            <td>3840.00</td>
+            <td>4480.00</td>
+            <td>6240.00</td>
+            <td>5440.00</td>
+            <td>6080.00</td>
+            <td>4800.00</td>
+            <td>5920.00</td>
+            <td>4320.00</td>
+            <td>4800.00</td>
+            <td>5600.00</td>
+            <td>4640.00</td>
+            <td>5600.00</td>
+            <td>5440.00</td>
+            <td>5280.00</td>
+            <td>6560.00</td>
+            <td>5600.00</td>
+            <td>5440.00</td>
+            <td>5120.00</td>
+            <td>5600.00</td>
+            <td>5440.00</td>
+            <td>3840.00</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>步云F3进线</td>
+            <td>8640.00</td>
+            <td>7920.00</td>
+            <td>9360.00</td>
+            <td>9360.00</td>
+            <td>9120.00</td>
+            <td>8880.00</td>
+            <td>8640.00</td>
+            <td>8880.00</td>
+            <td>9120.00</td>
+            <td>9600.00</td>
+            <td>8640.00</td>
+            <td>7920.00</td>
+            <td>9600.00</td>
+            <td>8640.00</td>
+            <td>9600.00</td>
+            <td>9360.00</td>
+            <td>9840.00</td>
+            <td>9360.00</td>
+            <td>9120.00</td>
+            <td>9120.00</td>
+            <td>9600.00</td>
+            <td>8880.00</td>
+            <td>8640.00</td>
+            <td>8640.00</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>铸造二期5#、6#炉3820</td>
+            <td>2520.00</td>
+            <td>2160.00</td>
+            <td>3360.00</td>
+            <td>3540.00</td>
+            <td>3720.00</td>
+            <td>3120.00</td>
+            <td>3240.00</td>
+            <td>3240.00</td>
+            <td>3420.00</td>
+            <td>3420.00</td>
+            <td>2940.00</td>
+            <td>2400.00</td>
+            <td>3600.00</td>
+            <td>3120.00</td>
+            <td>3600.00</td>
+            <td>3360.00</td>
+            <td>3660.00</td>
+            <td>3300.00</td>
+            <td>3120.00</td>
+            <td>3180.00</td>
+            <td>3300.00</td>
+            <td>2520.00</td>
+            <td>3180.00</td>
+            <td>3180.00</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>步云站F4进线</td>
+            <td>4000.00</td>
+            <td>4480.00</td>
+            <td>2880.00</td>
+            <td>4640.00</td>
+            <td>3360.00</td>
+            <td>3360.00</td>
+            <td>4160.00</td>
+            <td>3680.00</td>
+            <td>4480.00</td>
+            <td>2880.00</td>
+            <td>4480.00</td>
+            <td>3840.00</td>
+            <td>2560.00</td>
+            <td>4480.00</td>
+            <td>3040.00</td>
+            <td>3520.00</td>
+            <td>4000.00</td>
+            <td>4320.00</td>
+            <td>3840.00</td>
+            <td>2400.00</td>
+            <td>5120.00</td>
+            <td>3360.00</td>
+            <td>3040.00</td>
+            <td>4320.00</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>铸造一期4#炉3500</td>
+            <td>1020.00</td>
+            <td>360.00</td>
+            <td>2820.00</td>
+            <td>540.00</td>
+            <td>420.00</td>
+            <td>2640.00</td>
+            <td>1320.00</td>
+            <td>2340.00</td>
+            <td>540.00</td>
+            <td>2520.00</td>
+            <td>720.00</td>
+            <td>660.00</td>
+            <td>2340.00</td>
+            <td>840.00</td>
+            <td>1560.00</td>
+            <td>1320.00</td>
+            <td>1320.00</td>
+            <td>2280.00</td>
+            <td>1200.00</td>
+            <td>2040.00</td>
+            <td>600.00</td>
+            <td>2160.00</td>
+            <td>1200.00</td>
+            <td>360.00</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>铸造二期7#、8#炉3820</td>
+            <td>3540.00</td>
+            <td>3060.00</td>
+            <td>3420.00</td>
+            <td>3240.00</td>
+            <td>3060.00</td>
+            <td>3360.00</td>
+            <td>3120.00</td>
+            <td>2820.00</td>
+            <td>3360.00</td>
+            <td>3480.00</td>
+            <td>3120.00</td>
+            <td>2700.00</td>
+            <td>3300.00</td>
+            <td>2760.00</td>
+            <td>3120.00</td>
+            <td>3180.00</td>
+            <td>3600.00</td>
+            <td>3060.00</td>
+            <td>3300.00</td>
+            <td>3180.00</td>
+            <td>3300.00</td>
+            <td>3480.00</td>
+            <td>2820.00</td>
+            <td>2760.00</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>加工二期动力低压总</td>
+            <td>465.00</td>
+            <td>510.00</td>
+            <td>520.00</td>
+            <td>495.00</td>
+            <td>445.00</td>
+            <td>465.00</td>
+            <td>480.00</td>
+            <td>465.00</td>
+            <td>455.00</td>
+            <td>500.00</td>
+            <td>460.00</td>
+            <td>525.00</td>
+            <td>485.00</td>
+            <td>535.00</td>
+            <td>530.00</td>
+            <td>510.00</td>
+            <td>515.00</td>
+            <td>525.00</td>
+            <td>535.00</td>
+            <td>530.00</td>
+            <td>540.00</td>
+            <td>550.00</td>
+            <td>555.00</td>
+            <td>480.00</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>加工一期动力低压总</td>
+            <td>570.00</td>
+            <td>630.00</td>
+            <td>585.00</td>
+            <td>575.00</td>
+            <td>550.00</td>
+            <td>585.00</td>
+            <td>610.00</td>
+            <td>605.00</td>
+            <td>640.00</td>
+            <td>600.00</td>
+            <td>580.00</td>
+            <td>615.00</td>
+            <td>520.00</td>
+            <td>645.00</td>
+            <td>655.00</td>
+            <td>665.00</td>
+            <td>615.00</td>
+            <td>685.00</td>
+            <td>660.00</td>
+            <td>645.00</td>
+            <td>660.00</td>
+            <td>660.00</td>
+            <td>670.00</td>
+            <td>575.00</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>铸造二期动力变高压2500</td>
+            <td>2000.00</td>
+            <td>2040.00</td>
+            <td>2040.00</td>
+            <td>2000.00</td>
+            <td>2000.00</td>
+            <td>2000.00</td>
+            <td>1960.00</td>
+            <td>1960.00</td>
+            <td>1960.00</td>
+            <td>1960.00</td>
+            <td>2000.00</td>
+            <td>2000.00</td>
+            <td>2000.00</td>
+            <td>2040.00</td>
+            <td>2000.00</td>
+            <td>2040.00</td>
+            <td>2000.00</td>
+            <td>2040.00</td>
+            <td>2080.00</td>
+            <td>2040.00</td>
+            <td>2080.00</td>
+            <td>2040.00</td>
+            <td>2040.00</td>
+            <td>2040.00</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>铸造一期2#、3#炉3500</td>
+            <td>2760.00</td>
+            <td>2220.00</td>
+            <td>2940.00</td>
+            <td>2340.00</td>
+            <td>2820.00</td>
+            <td>2400.00</td>
+            <td>3000.00</td>
+            <td>2640.00</td>
+            <td>3060.00</td>
+            <td>2280.00</td>
+            <td>2520.00</td>
+            <td>2820.00</td>
+            <td>2220.00</td>
+            <td>2700.00</td>
+            <td>2760.00</td>
+            <td>2820.00</td>
+            <td>2820.00</td>
+            <td>3060.00</td>
+            <td>3120.00</td>
+            <td>2340.00</td>
+            <td>3180.00</td>
+            <td>2220.00</td>
+            <td>2940.00</td>
+            <td>2460.00</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>空压机专变1600</td>
+            <td>1170.00</td>
+            <td>1260.00</td>
+            <td>1230.00</td>
+            <td>1200.00</td>
+            <td>1110.00</td>
+            <td>1230.00</td>
+            <td>1110.00</td>
+            <td>1110.00</td>
+            <td>1200.00</td>
+            <td>1140.00</td>
+            <td>1110.00</td>
+            <td>1230.00</td>
+            <td>1110.00</td>
+            <td>1170.00</td>
+            <td>1230.00</td>
+            <td>1230.00</td>
+            <td>1170.00</td>
+            <td>1230.00</td>
+            <td>1200.00</td>
+            <td>1230.00</td>
+            <td>1230.00</td>
+            <td>1230.00</td>
+            <td>1230.00</td>
+            <td>1170.00</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>铸造一期动力低压总</td>
+            <td>1848.00</td>
+            <td>1840.00</td>
+            <td>1896.00</td>
+            <td>1872.00</td>
+            <td>1776.00</td>
+            <td>1744.00</td>
+            <td>1864.00</td>
+            <td>1784.00</td>
+            <td>1816.00</td>
+            <td>1768.00</td>
+            <td>1832.00</td>
+            <td>1792.00</td>
+            <td>1616.00</td>
+            <td>1648.00</td>
+            <td>1712.00</td>
+            <td>1664.00</td>
+            <td>1584.00</td>
+            <td>1632.00</td>
+            <td>1640.00</td>
+            <td>1648.00</td>
+            <td>1664.00</td>
+            <td>1680.00</td>
+            <td>1680.00</td>
+            <td>1728.00</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>加工二期动力变高压1000</td>
+            <td>460.00</td>
+            <td>520.00</td>
+            <td>540.00</td>
+            <td>500.00</td>
+            <td>440.00</td>
+            <td>480.00</td>
+            <td>480.00</td>
+            <td>480.00</td>
+            <td>460.00</td>
+            <td>500.00</td>
+            <td>460.00</td>
+            <td>540.00</td>
+            <td>500.00</td>
+            <td>540.00</td>
+            <td>540.00</td>
+            <td>520.00</td>
+            <td>520.00</td>
+            <td>540.00</td>
+            <td>520.00</td>
+            <td>560.00</td>
+            <td>540.00</td>
+            <td>560.00</td>
+            <td>560.00</td>
+            <td>480.00</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>空压机专变低压总</td>
+            <td>1164.00</td>
+            <td>1230.00</td>
+            <td>1236.00</td>
+            <td>1170.00</td>
+            <td>1104.00</td>
+            <td>1218.00</td>
+            <td>1104.00</td>
+            <td>1104.00</td>
+            <td>1164.00</td>
+            <td>1128.00</td>
+            <td>1122.00</td>
+            <td>1206.00</td>
+            <td>1104.00</td>
+            <td>1146.00</td>
+            <td>1224.00</td>
+            <td>1218.00</td>
+            <td>1146.00</td>
+            <td>1224.00</td>
+            <td>1206.00</td>
+            <td>1206.00</td>
+            <td>1218.00</td>
+            <td>1218.00</td>
+            <td>1212.00</td>
+            <td>1146.00</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>铸造一期1#炉3500</td>
+            <td>1560.00</td>
+            <td>1920.00</td>
+            <td>360.00</td>
+            <td>2160.00</td>
+            <td>960.00</td>
+            <td>1200.00</td>
+            <td>1500.00</td>
+            <td>1380.00</td>
+            <td>1980.00</td>
+            <td>360.00</td>
+            <td>2040.00</td>
+            <td>1320.00</td>
+            <td>420.00</td>
+            <td>2160.00</td>
+            <td>720.00</td>
+            <td>1200.00</td>
+            <td>1680.00</td>
+            <td>1980.00</td>
+            <td>1500.00</td>
+            <td>60.00</td>
+            <td>2880.00</td>
+            <td>840.00</td>
+            <td>720.00</td>
+            <td>1980.00</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>铸造一期动力变高压2500</td>
+            <td>1880.00</td>
+            <td>1880.00</td>
+            <td>1920.00</td>
+            <td>1920.00</td>
+            <td>1800.00</td>
+            <td>1760.00</td>
+            <td>1920.00</td>
+            <td>1800.00</td>
+            <td>1880.00</td>
+            <td>1760.00</td>
+            <td>1880.00</td>
+            <td>1840.00</td>
+            <td>1640.00</td>
+            <td>1680.00</td>
+            <td>1720.00</td>
+            <td>1680.00</td>
+            <td>1640.00</td>
+            <td>1640.00</td>
+            <td>1680.00</td>
+            <td>1680.00</td>
+            <td>1680.00</td>
+            <td>1720.00</td>
+            <td>1720.00</td>
+            <td>1760.00</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>铸造二期动力低压总</td>
+            <td>1992.00</td>
+            <td>2008.00</td>
+            <td>2008.00</td>
+            <td>1992.00</td>
+            <td>1976.00</td>
+            <td>1944.00</td>
+            <td>1944.00</td>
+            <td>1952.00</td>
+            <td>1944.00</td>
+            <td>1936.00</td>
+            <td>1952.00</td>
+            <td>1976.00</td>
+            <td>1992.00</td>
+            <td>1992.00</td>
+            <td>1992.00</td>
+            <td>1992.00</td>
+            <td>1992.00</td>
+            <td>2008.00</td>
+            <td>2040.00</td>
+            <td>2040.00</td>
+            <td>2040.00</td>
+            <td>2024.00</td>
+            <td>2008.00</td>
+            <td>2000.00</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>加工一期动力变高压1000</td>
+            <td>560.00</td>
+            <td>660.00</td>
+            <td>580.00</td>
+            <td>580.00</td>
+            <td>560.00</td>
+            <td>600.00</td>
+            <td>620.00</td>
+            <td>600.00</td>
+            <td>660.00</td>
+            <td>600.00</td>
+            <td>600.00</td>
+            <td>620.00</td>
+            <td>520.00</td>
+            <td>660.00</td>
+            <td>660.00</td>
+            <td>680.00</td>
+            <td>620.00</td>
+            <td>700.00</td>
+            <td>660.00</td>
+            <td>660.00</td>
+            <td>680.00</td>
+            <td>660.00</td>
+            <td>680.00</td>
+            <td>580.00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var laydate = layui.laydate;
+    laydate.render({
+        elem: '#Date1',
+        max: "2020/1/16 10:20:21"
+    });
+    laydate.render({
+        elem: '#Date3',
+        max: "2020/1/16 10:20:21"
+    });
+
+    $("#Date1").val("2020-01-15");
+    $("#Date2").val("08:00");
+    $("#Date3").val("2020-01-16");
+    $("#Date4").val("07:00");
+    var DayFrozenExportBo = false;
+    function DayFrozenExport() {
+        if (DayFrozenExportBo)
+            return;
+        DayFrozenExportBo = true;
+        var strJson = "{tmp:1";
+        strJson += ",Date1:'" + $("#Date1").val() + "'";
+        strJson += ",Date2:'" + $("#Date2").val() + "'";
+        strJson += ",Date3:'" + $("#Date3").val() + "'";
+        strJson += ",Date4:'" + $("#Date4").val() + "'";
+        strJson += "}";
+        $.ajax({
+            url: '/Monitor/HourFreezingDataExcel?t=' + Date.parse(new Date()),
+            type: "Post",
+            data: eval('(' + strJson + ')'),
+            success: function (data) {
+                DayFrozenExportBo = false;
+                var json = new Function("return" + data)()
+                if (json.Code == '0000') {
+                    var elemIF = document.createElement("iframe");
+                    elemIF.src = json.BodyMessage;
+                    elemIF.style.display = "none";
+                    document.body.appendChild(elemIF);
+                } else {
+                    alert(json.Message);
+                }
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    var form = layui.form;
+    form.render();
+</script>
+</body>
+</html>

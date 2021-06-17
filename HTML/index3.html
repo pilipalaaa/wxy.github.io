@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="../SystemStyle/JS/jquery-1.7.2.min.js"></script>
+    <script src="../SystemStyle/JS/js.js"></script>
+    <script>window.parent.hideSideAndFoot();</script>
+    <style>
+        body,h2,h4,p{
+            padding: 0;
+            margin: 0;
+        }
+        @font-face {
+            font-family: 'UnidreamLED';
+            src:url(UnidreamLED/UnidreamLED.eot); /***兼容ie9***/
+            src:url(UnidreamLED/UnidreamLED.eot?#iefix)format('embedded-opentype'), /***兼容ie6-ie8***/
+            url('UnidreamLED/UnidreamLED.woff') format('woff'),
+            local('UnidreamLED'), url("UnidreamLED/UnidreamLED.woff");/***默认使用本地的***/
+        }
+        .BoxWrap {
+            width: 100%;
+            height: 100%;
+            /*background: radial-gradient(circle at center center, rgba(25, 25, 112, 0), rgba(25, 25, 112, 0)),
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) left top,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) left top,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) right top,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) right top,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) left bottom,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) left bottom,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) right bottom,
+            linear-gradient(rgba(179, 224, 255, 0.62), rgba(179, 224, 255, 0.62)) right bottom,
+            linear-gradient(rgba(56, 144, 184, 0.60), rgba(56, 144, 184, 0.60)) top,
+            linear-gradient(rgba(26, 87, 130, 0.60), rgba(26, 87, 130, 0.60)) bottom,
+            linear-gradient(rgba(56, 144, 184, 0.60), rgba(219, 240, 255, 0.80), rgba(26, 87, 130, 0.60)) left,
+            linear-gradient(rgba(56, 144, 184, 0.60), rgba(219, 240, 255, 0.80), rgba(26, 87, 130, 0.60)) right;*/
+            background: radial-gradient(circle at center center, rgba(25, 25, 112, 0), rgba(25, 25, 112, 0)),
+            linear-gradient(#16366A, #16366A) left top,
+            linear-gradient(#16366A, #16366A) left top,
+            linear-gradient(#16366A, #16366A) right top,
+            linear-gradient(#16366A, #16366A) right top,
+            linear-gradient(#16366A, #16366A) left bottom,
+            linear-gradient(#16366A, #16366A) left bottom,
+            linear-gradient(#16366A, #16366A) right bottom,
+            linear-gradient(#16366A, #16366A) right bottom,
+            linear-gradient(#16366A, #16366A) top,
+            linear-gradient(#16366A, #16366A) bottom,
+            linear-gradient(#16366A, #16366A, rgba(26, 87, 130, 0.60)) left,
+            linear-gradient(rgba(56, 144, 184, 0.60), #16366A, rgba(26, 87, 130, 0.60)) right;
+            background-repeat: no-repeat;
+            background-position: 1px 1px, 0px 0px, 0px 0px, 0px 100%, 0px 100%, 100% 0px, 100% 0px, 100% 100%, 100% 100%, 0px 0px, 0px 100%, 0px 100%, 100% 100%;
+            background-size: calc(100% - 2px) calc(100% - 2px), 1px 10px, 10px 1px, 1px 10px, 10px 1px, 1px 10px, 10px 1px, 1px 10px, 10px 1px, 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+        }
+        .horn{
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#4589FB, #4589FB) left top,
+            linear-gradient(#4589FB, #4589FB) left top,
+            linear-gradient(#4589FB, #4589FB) right top,
+            linear-gradient(#4589FB, #4589FB) right top,
+            linear-gradient(#4589FB, #4589FB) left bottom,
+            linear-gradient(#4589FB, #4589FB) left bottom,
+            linear-gradient(#4589FB, #4589FB) right bottom,
+            linear-gradient(#4589FB, #4589FB) right bottom;
+            background-repeat: no-repeat;
+            background-size: 3px 15px, 15px 3px;
+        }
+        .box{
+            height: 580px;
+            width: 1300px;
+            margin: 0 auto;
+            max-width: 1920px;
+            background-color: #041429;
+            position: relative;
+        }
+        h4,p,span{
+            color: #00F7DE;
+            font-family: 仿宋;
+        }
+        .biaoti{
+            font-family: 仿宋;
+            color: #00F7DE;
+            font-size: 20px;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #fff,
+            0 0 40px  #00F7DE,
+            0 0 70px  #00F7DE;
+        }
+        .line {
+            width: 300px;
+            height: 50px;
+            margin-top: 15px;
+            border-top: 1px solid #cccccc;
+            border-bottom: 1px solid #cccccc;
+            text-align: center;
+            line-height: 50px;
+        }
+        .kuang{
+            font-family: UnidreamLED;
+            font-size: 20px;
+            width: 15%;
+            height: 40%;
+            margin: 17px 0 18px 5px;
+            float: left;
+            background-color: #3398DB;
+            text-align: center;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div style="width: 100%;height: 80px">
+            <div style="float: left;">
+                <img src="../SystemStyle/Images/logotubiao.png" style="width: 80px;height: 50px;padding: 20px 0 10px 50px"/>
+            </div>
+            <div style="float: left;margin-left: 20px;line-height: 80px">
+                <h4>cqjtu</h4>
+            </div>
+            <div style="float: left;margin-left: 20px;line-height: 80px">
+                <span type="button" role="button" style="cursor: pointer">日</span>
+                <span type="button" role="button" style="cursor: pointer">|&nbsp;周</span>
+                <span type="button" role="button" style="cursor: pointer">|&nbsp;年</span>
+            </div>
+            <div style="float: left;margin-left: 200px;line-height: 80px">
+                <div class="line"><span class="biaoti">双福德园能源管理平台</span></div>
+            </div>
+            <div style="float: right;margin: 30px 100px 0 0;font-family: UnidreamLED;color: #00F7DE;font-size: 20px;white-space:pre;" id="time"></div>
+        </div>
+        <div style="width: 250px;height: 450px;position: absolute;left: 0;top: 85px;margin-left: 10px">
+            <div style="width: 230px;height: 100px;margin: 10px;">
+                <div class="BoxWrap">
+                    <div class="horn" id="left_top"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 100px;margin: 10px;">
+                <div class="BoxWrap">
+                    <div class="horn" id="dian"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 100px;margin: 10px;">
+                <div class="BoxWrap">
+                    <div class="horn" id="ranqi"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 100px;margin: 10px;">
+                <div class="BoxWrap">
+                    <div class="horn" id="shui"></div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 250px;height: 450px;position: absolute;left: 250px;top: 85px;margin-left: 10px">
+            <div style="width: 230px;height: 137px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn" id="day"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 137px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn" id="month"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 136px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn" id="year"></div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 500px;height: 450px;position: absolute;left: 500px;top: 85px;margin: 10px">
+            <div style="width: 100%;height: 50px">
+                <div style="height: 100%;width: 33.333333%;float: left;text-align: center;">
+                    <p>累计电量</p>
+                    <span>592324.00</span><span>&nbsp;KWh</span>
+                </div>
+                <div style="height: 100%;width: 33.333333%;float: left;text-align: center">
+                    <p>本月电量</p>
+                    <span>592324.00</span><span>&nbsp;KWh</span>
+                </div>
+                <div style="height: 100%;width: 33.333333%;float: left;text-align: center">
+                    <p>日电量</p>
+                    <span>24567.00</span><span>&nbsp;KWh</span>
+                </div>
+            </div>
+            <div style="width: 100%;height: 400px" id="map"></div>
+        </div>
+        <div style="width: 250px;height: 450px;position: absolute;right: 40px;top: 85px">
+            <div style="width: 230px;height: 137px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn" id="right_top"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 137px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn" id="right_middle"></div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 62px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn">
+                        <div style="width: 30%;height: 100%;float: left;text-align: center;line-height: 60px">
+                            <span style="padding-left: 20px">节电率</span>
+                        </div>
+                        <div style="width: 70%;height: 100%;float: left"  id="jiedian"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 230px;height: 62px;margin: 10px">
+                <div class="BoxWrap">
+                    <div class="horn">
+                        <div style="height: 100%;width: 30%;float: left">
+                            <div style="height: 30%;text-align: center">
+                                <span>CO2</span>
+                            </div>
+                            <div style="height: 70%;">
+                                <img src="../SystemStyle/Images/烟囱.png" rel="icon" style="width: 80%;height: 100%;padding-left: 5px">
+                            </div>
+                        </div>
+                        <div style="height: 100%;width: 70%;float: left">
+                            <div class="kuang">1</div>
+                            <div class="kuang">2</div>
+                            <div class="kuang">3</div>
+                            <div class="kuang">.</div>
+                            <div class="kuang">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../SystemStyle/JS/jquery-1.7.2.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/china.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('map'));
+        var option = {
+            /*tooltip: {},*/
+            //配置属性
+            series: [{
+                name: 'china_map',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                label: {
+                    normal: {
+                        show: false, //省份名称
+                        textStyle:{
+                            color:'white'
+                        }
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle:{color:"#800080"}
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: .5,
+                        /*borderColor: '#FFFFFF',
+                        areaColor:"#FFFFFF"*/
+                        borderColor: '#FFFFFF',
+                        areaColor: '#092DFF'
+                    },
+                    emphasis: {
+                        borderWidth: .5,
+                        borderColor: '#4b0082',
+                        areaColor:"#ffdead"
+                    }
+                },
+                data:[
+                    {name:'上海'},
+                    {name:'甘肃'},
+                    {name:'云南'},
+                    {name:'内蒙古'},
+                    {name:'北京'},
+                    {name:'台湾'},
+                    {name:'吉林'},
+                    {name:'四川'},
+                    {name:'天津'},
+                    {name:'宁夏'},
+                    {name:'安徽'},
+                    {name:'山东'},
+                    {name:'山西'},
+                    {name:'广东'},
+                    {name:'广西'},
+                    {name:'新疆'},
+                    {name:'江苏'},
+                    {name:'江西'},
+                    {name:'河北'},
+                    {name:'河南'},
+                    {name:'浙江'},
+                    {name:'海南'},
+                    {name:'湖北'},
+                    {name:'湖南'},
+                    {name:'福建'},
+                    {name:'贵州'},
+                    {name:'辽宁'},
+                    {name:'重庆'},
+                    {name:'陕西'},
+                    {name:'青海'},
+                    {name:'黑龙江'}
+                ]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
+    <script>
+        var myCharts = echarts.init(document.getElementById('day'));
+        option = {
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                top: '10',
+                left: '0',
+                right: '10',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: {
+                show: false,
+                type: 'category',
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00',
+                    '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00',
+                    '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
+                    '21:00', '22:00', '23:00'],
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            yAxis: {
+                show: false,
+                type: 'value',
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            series: [{
+                name: '用电量',
+                data: [820, 932, 901, 934, 1290, 1330, 1320,
+                    400, 1000, 111, 1111, 444, 555, 60,
+                    300, 100, 222, 222, 333, 666, 777,
+                    900, 200, 444],
+                type: 'line'
+            }]
+        };
+        myCharts.setOption(option);
+
+        var myCharts = echarts.init(document.getElementById('month'));
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                top: '0',
+                left: '0',
+                right: '10',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: {
+                show: false,
+                type: 'category',
+                boundaryGap: false,
+                data: ['01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07',
+                    '01-08', '01-09', '01-10', '01-11', '01-12', '01-13', '01-14',
+                    '01-15', '01-16', '01-17', '01-18', '01-19', '01-20', '01-21',
+                    '01-22', '01-23', '01-24', '01-25', '01-26', '01-27', '01-28',
+                    '01-29', '01-30', '01-31'],
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            yAxis: {
+                show: false,
+                type: 'value',
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            series: [{
+                name: '用电量',
+                data: [3535, 3084, 3234, 3628, 3786, 3001, 3572,
+                    3189, 3676, 3849, 3240, 3017, 3604, 3555,
+                    3662, 3129, 3947, 3743, 3671, 3748, 3854,
+                    3454, 3105, 3274, 3270, 3264, 3098, 3718,
+                    3990, 3032, 3619],
+                type: 'line',
+                itemStyle: {
+                    color: '#F02FC2'
+                },
+                areaStyle: {
+                    color: '#F02FC2'
+                }
+            }]
+        };
+        myCharts.setOption(option);
+
+        var myCharts = echarts.init(document.getElementById('year'));
+        option = {
+            color: ['#00F7DE'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                top: '0',
+                left: '0',
+                right: '10',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    show: false,
+                    type: 'category',
+                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    axisLabel: {
+                        formatter: function () {
+                            return "";
+                        }
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                }
+            ],
+            yAxis: [
+                {
+                    show: false,
+                    type: 'value',
+                    axisLabel: {
+                        formatter: function () {
+                            return "";
+                        }
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                }
+            ],
+            series: [
+                {
+                    name: '用电量',
+                    type: 'bar',
+                    barWidth: '60%',
+                    data: [49127, 45154, 46470, 45998, 47166, 42204, 41024, 48848, 42174, 40280, 49340, 45671],
+                }
+            ]
+        };
+        myCharts.setOption(option);
+    </script>
+    <script>
+        var myCharts = echarts.init(document.getElementById('right_top'));
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            /*legend: {
+                orient: 'vertical',
+                left: 10,
+                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            },*/
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value: 335, name: '直接访问'},
+                        {value: 310, name: '邮件营销'},
+                        {value: 234, name: '联盟广告'},
+                        {value: 135, name: '视频广告'},
+                        {value: 1548, name: '搜索引擎'}
+                    ]
+                }
+            ]
+        };
+        myCharts.setOption(option);
+    </script>
+    <script>
+        var myCharts = echarts.init(document.getElementById('left_top'));
+        var colorTemplate1 = [[0.2, "rgba(255,0,0,0.8)"], [0.8, "rgba(0,255,255,0.8)"], [1, "rgba(0,255,0,0.8)"]];
+        var data1 = [{
+            name: "总能耗",
+            value: 85,
+        }];
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {				// 本系列特定的 tooltip 设定。
+                show: true,
+                formatter: "{b}：{c}%",
+                backgroundColor: "rgba(50,50,50,0.7)",	// 提示框浮层的背景颜色。注意：series.tooltip 仅在 tooltip.trigger 为 'item' 时有效。
+                borderColor: "#333",		// 提示框浮层的边框颜色。...
+                borderWidth: 0,				// 提示框浮层的边框宽。...
+                padding: 5,					// 提示框浮层内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距。...
+                textStyle: {				// 提示框浮层的文本样式。...
+                    // color ,fontStyle ,fontWeight ,fontFamily ,fontSize ,lineHeight ,.......
+                },
+            },
+            series: [
+                {
+                    name: "总能耗",		// 系列名称,用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。
+                    type: "gauge",			// 系列类型
+                    radius:	"80%",			// 参数:number, string。 仪表盘半径,默认 75% ，可以是相对于容器高宽中较小的一项的一半的百分比，也可以是绝对的数值。
+                    center: ["50%", "55%"],	// 仪表盘位置(圆心坐标)
+                    startAngle: 225,		// 仪表盘起始角度,默认 225。圆心 正右手侧为0度，正上方为90度，正左手侧为180度。
+                    endAngle: -45,			// 仪表盘结束角度,默认 -45
+                    clockwise: true,		// 仪表盘刻度是否是顺时针增长,默认 true。
+                    min: 0,					// 最小的数据值,默认 0 。映射到 minAngle。
+                    max: 100,				// 最大的数据值,默认 100 。映射到 maxAngle。
+                    splitNumber: 10,		// 仪表盘刻度的分割段数,默认 10。
+
+                    axisLine: {				// 仪表盘轴线(轮廓线)相关配置。
+                        show: true,				// 是否显示仪表盘轴线(轮廓线),默认 true。
+                        lineStyle: {			// 仪表盘轴线样式。
+                            color: colorTemplate1, 	//仪表盘的轴线可以被分成不同颜色的多段。每段的  结束位置(范围是[0,1]) 和  颜色  可以通过一个数组来表示。默认取值：[[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']]
+                            opacity: 1,					//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                            width: 10,					//轴线宽度,默认 30。
+                            shadowBlur: 10,				//(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                            shadowColor: "#fff",		//阴影颜色。支持的格式同color。
+                        }
+                    },
+
+                    splitLine: {			// 分隔线样式。
+                        show: false,				// 是否显示分隔线,默认 true。
+                        length: 1,				// 分隔线线长。支持相对半径的百分比,默认 30。
+                        lineStyle: {			// 分隔线样式。
+                            color: "#eee",				//线的颜色,默认 #eee。
+                            opacity: 1,					//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                            width: 2,					//线度,默认 2。
+                            type: "solid",				//线的类型,默认 solid。 此外还有 dashed,dotted
+                            shadowBlur: 10,				//(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                            shadowColor: "#fff",		//阴影颜色。支持的格式同color。
+                        }
+                    },
+
+                    axisTick: {				// 刻度(线)样式。
+                        show: false,				// 是否显示刻度(线),默认 true。
+                        splitNumber: 5,			// 分隔线之间分割的刻度数,默认 5。
+                        length: 8,				// 刻度线长。支持相对半径的百分比,默认 8。
+                        lineStyle: {			// 刻度线样式。
+                            color: "#eee",				//线的颜色,默认 #eee。
+                            opacity: 1,					//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                            width: 1,					//线度,默认 1。
+                            type: "solid",				//线的类型,默认 solid。 此外还有 dashed,dotted
+                            shadowBlur: 10,				//(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                            shadowColor: "#fff",		//阴影颜色。支持的格式同color。
+                        },
+                    },
+
+                    axisLabel: {			// 刻度标签。
+                        show: false,				// 是否显示标签,默认 true。
+                        distance: 5,			// 标签与刻度线的距离,默认 5。
+                        color: "#fff",			// 文字的颜色,默认 #fff。
+                        fontSize: 12,			// 文字的字体大小,默认 5。
+                        formatter: "{value}",	// 刻度标签的内容格式器，支持字符串模板和回调函数两种形式。 示例:// 使用字符串模板，模板变量为刻度默认标签 {value},如:formatter: '{value} kg'; // 使用函数模板，函数参数分别为刻度数值,如formatter: function (value) {return value + 'km/h';}
+                    },
+
+                    pointer: {				// 仪表盘指针。
+                        show: true,				// 是否显示指针,默认 true。
+                        length: "70%",			// 指针长度，可以是绝对数值，也可以是相对于半径的百分比,默认 80%。
+                        width: 5,				// 指针宽度,默认 8。
+                    },
+
+                    itemStyle: {			// 仪表盘指针样式。
+                        color: "auto",			// 指针颜色，默认(auto)取数值所在的区间的颜色
+                        opacity: 1,				// 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                        borderWidth: 0,			// 描边线宽,默认 0。为 0 时无描边。
+                        borderType: "solid",	// 柱条的描边类型，默认为实线，支持 'solid', 'dashed', 'dotted'。
+                        borderColor: "#000",	// 图形的描边颜色,默认 "#000"。支持的颜色格式同 color，不支持回调函数。
+                        shadowBlur: 10,			// (发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                        shadowColor: "#fff",	// 阴影颜色。支持的格式同color。
+                    },
+
+                    emphasis: {				// 高亮的 仪表盘指针样式
+                        itemStyle: {
+                            //高亮 和正常  两者具有同样的配置项,只是在不同状态下配置项的值不同。
+                        }
+                    },
+
+                    title: {				// 仪表盘标题。
+                        show: false,				// 是否显示标题,默认 true。
+                        offsetCenter: [0,"20%"],//相对于仪表盘中心的偏移位置，数组第一项是水平方向的偏移，第二项是垂直方向的偏移。可以是绝对的数值，也可以是相对于仪表盘半径的百分比。
+                        color: "#fff",			// 文字的颜色,默认 #333。
+                        fontSize: 15,			// 文字的字体大小,默认 15。
+                    },
+
+                    detail: {				// 仪表盘详情，用于显示数据。
+                        show: true,				// 是否显示详情,默认 true。
+                        offsetCenter: [0,"50%"],// 相对于仪表盘中心的偏移位置，数组第一项是水平方向的偏移，第二项是垂直方向的偏移。可以是绝对的数值，也可以是相对于仪表盘半径的百分比。
+                        color: "auto",			// 文字的颜色,默认 auto。
+                        fontSize: 15,			// 文字的字体大小,默认 15。
+                        formatter: "{value}%",	// 格式化函数或者字符串
+                    },
+                    data: data1
+                }
+            ]
+
+        };
+        myCharts.setOption(option);
+    </script>
+    <script>
+        var myCharts = echarts.init(document.getElementById('dian'));
+        option = {
+            color: ['#6600FF'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                top: '10',
+                left: '10',
+                right: '0',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: {
+                show: false,
+                type: 'value',
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            yAxis: {
+                show: false,
+                type: 'category',
+                data: ['巴西', '印尼', '美国', '印度', '中国', '总用电'],
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            series: {
+                name: '电',
+                type: 'bar',
+                data: [18203, 23489, 29034, 104970, 131744, 630230],
+            }
+        };
+        myCharts.setOption(option);
+
+        var myCharts = echarts.init(document.getElementById('ranqi'));
+        var base = +new Date(2020, 1, 19);
+        var oneDay = 24 * 3600 * 1000;
+        var date = [];
+
+        var data = [Math.random() * 300];
+
+        for (var i = 1; i < 20000; i++) {
+            var now = new Date(base += oneDay);
+            date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+        }
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            grid: {
+                top: '0',
+                left: '0',
+                right: '10',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: {
+                show: false,
+                type: 'category',
+                boundaryGap: false,
+                data: date,
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            yAxis: {
+                show: false,
+                type: 'value',
+                boundaryGap: [0, '100%'],
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            series: [
+                {
+                    name: '煤气',
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        color: 'rgb(255, 70, 131)'
+                    },
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(255, 158, 68)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(255, 70, 131)'
+                        }])
+                    },
+                    data: data
+                }
+            ]
+        };
+        myCharts.setOption(option);
+
+        var myCharts = echarts.init(document.getElementById('shui'));
+        option = {
+            color: ['#CC00FF'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                top: '20',
+                left: '0',
+                right: '10',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis: {
+                show: false,
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            yAxis: {
+                show: false,
+                type: 'value',
+                axisLabel: {
+                    formatter: function () {
+                        return "";
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+            },
+            series: [{
+                name: '水',
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                type: 'line'
+            }]
+        };
+        myCharts.setOption(option);
+    </script>
+    <script src="js/index3.js"></script>
+    <script>
+        var e=80;
+        var myCharts = echarts.init(document.getElementById('jiedian'));
+        option = {
+            title:{
+                show:true,
+                text:e+'%',
+                x: 'center',
+                y: 'center',
+                textStyle: {
+                    fontFamily: 'UnidreamLED',
+                    fontSize: '17',
+                    color: '#00FF99',
+                    fontWeight: 'normal'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{d}%",
+                show:false
+            },
+            series:
+                {
+                    name:'',
+                    type:'pie',
+                    radius: ['80%', '90%'],
+                    avoidLabelOverlap: true,
+                    hoverAnimation:false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:e, name:''},
+                        {value:100-e, name:''},
+                    ],
+                    color:['#00FF99','#909090']
+                }
+        };
+        myCharts.setOption(option);
+    </script>
+    <script>
+        setInterval(function(){
+            var time = new Date();
+            var year = time.getFullYear(); //获取年份
+            var month = time.getMonth()+1; //获取月份
+            var day = time.getDate();  //获取日期
+            var hour = checkTime(time.getHours());  //获取时
+            var minite = checkTime(time.getMinutes()); //获取分
+            var second = checkTime(time.getSeconds()); //获取秒
+            /****当时、分、秒、小于10时，则添加0****/
+            function checkTime(i){
+                if(i < 10) return '0'+i;
+                return i;
+            }
+            var box=document.getElementById('time');
+            box.innerHTML=year+"-"+month+'-'+day+"   "+hour+':'+minite+':'+second;
+        },1000);
+    </script>
+</body>
+</html>

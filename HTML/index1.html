@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>首页</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <link href="lib/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/jquery/1.12.4/jquery.min.js"></script>
+    <script src="lib/ECharts/echarts.min.js"></script>
+    <script src="js/china.js"></script>
+    <script src="lib/ECharts/theme/customed.js"></script>
+    <script src="lib/layui-v2.4.5/layui/layui.js"></script>
+    <link href="lib/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <script src="lib/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <!--[if lt IE 9]><script src="lib/html5shiv/r29/html5.min.js"></script><script src="lib/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            position: relative;
+            height: 750px;
+        }
+
+        #box{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            background-image: url("images/background.png");
+            background-size: 100% 100%;
+        }
+
+        #box h4{
+            font-family: 仿宋;
+            color: #00F7DE;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 1%;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #fff,
+            0 0 40px  #00F7DE,
+            0 0 70px  #00F7DE,
+            0 0 80px  #00F7DE,
+            0 0 100px #00F7DE,
+            0 0 150px #00F7DE;
+        }
+
+        #box #left{
+            position: absolute;
+            top: 9%;
+            left: 1.5%;
+            width: 28%;
+            height: 75%;
+        }
+
+        #box #middle{
+            position: absolute;
+            top: 9%;
+            left: 30.5%;
+            width: 39%;
+            height: 74%;
+            border-radius: 10px;
+        }
+
+        #box #right{
+            position: absolute;
+            top: 9%;
+            right: 1.5%;
+            width: 28%;
+            height: 75%;
+        }
+
+        #box #left #left_top{
+            width: 100%;
+            height: 68%;
+            border-radius: 10px;
+            color: #004ba4;
+        }
+
+        #box #left #left_bottom{
+            width: 100%;
+            height: 29.5%;
+            margin-top: 4.5%;
+            border-radius: 10px;
+
+        }
+
+        #box #right #right_top{
+            width: 100%;
+            height: 68%;
+            border-radius: 10px;
+        }
+
+        #box #right #right_bottom{
+            width: 100%;
+            height: 29.5%;
+            margin-top: 4.5%;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        window.parent.hideSideAndFoot();
+        //写cookies
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+        }
+
+        //读取cookies
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+            if (arr = document.cookie.match(reg))
+
+                return (arr[2]);
+            else
+                return "";
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <h4>双福能源科技</h4>
+    <div id="left">
+        <div id="left_top"></div>
+        <div id="left_bottom"></div>
+    </div>
+    <div id="middle"></div>
+    <div id="right">
+        <div id="right_top"></div>
+        <div id="right_bottom"></div>
+    </div>
+</div>
+<script src="js/index1.js"></script>
+</body>
+</html>
